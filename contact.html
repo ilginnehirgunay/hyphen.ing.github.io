@@ -64,11 +64,12 @@
             box-sizing: border-box;
             display: flex;
             justify-content: flex-end;
+            align-items: center;
             gap: 20px;
             font-size: 48px; 
-            font-weight: 250; 
+            font-weight: 350; 
             letter-spacing: -0.02em; 
-            line-height: 1.1;
+            line-height: 1;
             z-index: 101;
             pointer-events: auto;
             mix-blend-mode: difference; 
@@ -76,10 +77,14 @@
         }
 
         .contact-btn {
-            background-color: #000000;
-            color: #ffffff;
-            border-radius: 50px;
-            padding: 4px 24px;
+            background-color: #ffffff;
+            color: #000000;
+            border-radius: 100px;
+            padding: 16px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
         }
 
         .sticky-nav-ing {
@@ -87,8 +92,8 @@
             top: 20px; 
             left: 20px;
             font-size: 48px; 
-            font-weight: 250;
-            line-height: 1.1;
+            font-weight: 350;
+            line-height: 1;
             letter-spacing: -0.02em;
             margin: 0;
             z-index: 101;
@@ -105,7 +110,7 @@
 
         .intro-text {
             font-size: 48px; 
-            font-weight: 250;
+            font-weight: 350;
             line-height: 1;
             letter-spacing: -0.02em;
             text-align: left;
@@ -113,11 +118,13 @@
         }
 
         .scroll-footer {
-            padding: 89px 20px 0 20px; 
+            padding-top: 68px; 
+            padding-left: 20px;
+            padding-right: 20px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            height: calc(100vh - 240px); 
+            height: calc(100vh - 716px); 
             box-sizing: border-box;
             pointer-events: auto; 
             z-index: 95;
@@ -126,7 +133,7 @@
 
         .scroll-footer a {
             font-size: 48px; 
-            font-weight: 250; 
+            font-weight: 350; 
             letter-spacing: -0.02em;
             line-height: 1;
             margin: 0;
@@ -134,19 +141,25 @@
         }
 
         .page-definition {
-            padding: 0 20px 120px 20px;
+            height: 320px;
+            padding: 80px 20px 0 20px;
+            box-sizing: border-box;
         }
 
         .page-footer-text {
+            height: 136px;
             padding: 0 20px 40px 20px;
+            box-sizing: border-box;
         }
 
         .bottom-nav-left {
+            height: 260px;
+            padding-bottom: 20px;
+            box-sizing: border-box;
             position: relative;
             width: 100%;
             z-index: 90;
             pointer-events: none;
-            padding-bottom: 20px;
         }
 
         #about-overlay {
@@ -182,8 +195,8 @@
             top: 20px;
             left: 20px;
             font-size: 48px; 
-            font-weight: 250;
-            line-height: 1.1;
+            font-weight: 350;
+            line-height: 1;
             letter-spacing: -0.02em;
             margin: 0;
         }
@@ -194,8 +207,8 @@
             right: 20px;
             cursor: pointer;
             font-size: 48px; 
-            font-weight: 250;
-            line-height: 1.1;
+            font-weight: 350;
+            line-height: 1;
             letter-spacing: -0.02em;
             margin: 0;
         }
@@ -205,8 +218,8 @@
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             font-size: 48px; 
-            font-weight: 250;
-            line-height: 1.1;
+            font-weight: 350;
+            line-height: 1;
             letter-spacing: -0.02em;
         }
 
@@ -215,16 +228,16 @@
             margin-bottom: 15px;
             opacity: 0.5;
             font-size: 48px; 
-            font-weight: 250;
-            line-height: 1.1;
+            font-weight: 350;
+            line-height: 1;
             letter-spacing: -0.02em;
             font-style: italic; 
         }
 
         .overlay-footer-text {
             font-size: 48px;
-            font-weight: 250;
-            line-height: 1.1;
+            font-weight: 350;
+            line-height: 1;
             letter-spacing: -0.02em;
             opacity: 0.5;
         }
@@ -234,21 +247,45 @@
                 height: 180px;
                 font-size: 180px;
             }
+            .nav-right {
+                font-size: 48px;
+            }
+            .sticky-nav-ing {
+                font-size: 48px;
+            }
             main {
                 padding: 68px 20px 0 20px;
             }
             .scroll-footer {
-                height: calc(100vh - 180px);
-                padding: 85px 20px 0 20px;
+                padding-top: 68px; 
+                height: calc(100vh - 664px);
+            }
+            .scroll-footer a {
+                font-size: 48px;
             }
             .page-definition {
-                padding: 0 20px 120px 20px;
+                height: 360px;
+                padding: 80px 20px 0 20px;
+            }
+            .bottom-nav-left {
+                height: 200px;
             }
             .page-footer-text {
+                height: 104px;
                 padding: 0 20px 40px 20px;
             }
+            .overlay-nav-ing {
+                font-size: 48px;
+            }
+            .close-btn {
+                font-size: 48px;
+            }
             .definition-grid {
+                font-size: 48px;
                 gap: 30px;
+            }
+            .word-title {
+                font-size: 48px;
             }
             .overlay-footer-text {
                 font-size: 32px;
@@ -266,6 +303,9 @@
                 font-size: 32px;
                 padding: 15px;
             }
+            .contact-btn {
+                padding: 8px 24px;
+            }
             .sticky-nav-ing {
                 top: 15px;
                 left: 15px;
@@ -278,20 +318,25 @@
                 font-size: 32px;
             }
             .scroll-footer {
-                height: calc(100vh - 120px);
-                padding: 65px 15px 0 15px;
+                padding-top: 47px;
+                padding-left: 15px;
+                padding-right: 15px;
+                height: calc(100vh - 687px);
             }
             .scroll-footer a {
                 font-size: 32px;
             }
             .page-definition {
-                padding: 0 15px 80px 15px;
-            }
-            .page-footer-text {
-                padding: 0 15px 40px 15px;
+                height: 480px;
+                padding: 40px 15px 0 15px;
             }
             .bottom-nav-left {
+                height: 135px;
                 padding-bottom: 15px;
+            }
+            .page-footer-text {
+                height: 72px;
+                padding: 0 15px 40px 15px;
             }
             #about-overlay {
                 padding: 80px 15px 20px 15px;
