@@ -64,24 +64,36 @@
             box-sizing: border-box;
             display: flex;
             justify-content: flex-end;
+            align-items: center;
             gap: 20px;
-            font-size: 64px; 
-            font-weight: 200; 
+            font-size: 48px; 
+            font-weight: 350; 
             letter-spacing: -0.02em; 
-            line-height: 1.1;
+            line-height: 1;
             z-index: 101;
             pointer-events: auto;
             mix-blend-mode: difference; 
             color: #ffffff;
         }
 
+        .contact-btn {
+            background-color: #ffffff;
+            color: #000000;
+            border-radius: 100px;
+            padding: 16px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
         .sticky-nav-ing {
             position: fixed;
             top: 20px; 
             left: 20px;
-            font-size: 64px; 
-            font-weight: 200;
-            line-height: 1.1;
+            font-size: 48px; 
+            font-weight: 350;
+            line-height: 1;
             letter-spacing: -0.02em;
             margin: 0;
             z-index: 101;
@@ -91,14 +103,14 @@
         }
 
         main {
-            padding: 84px 20px 0 20px; 
+            padding: 68px 20px 0 20px; 
             width: 100%; 
             box-sizing: border-box;
         }
 
         .intro-text {
-            font-size: 64px; 
-            font-weight: 200;
+            font-size: 48px; 
+            font-weight: 350;
             line-height: 1;
             letter-spacing: -0.02em;
             text-align: left;
@@ -106,16 +118,16 @@
         }
 
         .project-location {
-            font-size: 64px;
-            font-weight: 200;
+            font-size: 48px;
+            font-weight: 350;
             line-height: 1;
             letter-spacing: -0.02em;
         }
 
         .subpage-details {
-            font-size: 64px; 
-            font-weight: 200;
-            line-height: 1.1;
+            font-size: 48px; 
+            font-weight: 350;
+            line-height: 1;
             letter-spacing: -0.02em;
             margin-bottom: 120px;
             max-width: 95%;
@@ -137,11 +149,13 @@
         }
 
         .scroll-footer {
-            padding: 105px 20px 0 20px; 
+            padding-top: 68px; 
+            padding-left: 20px;
+            padding-right: 20px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            height: calc(100vh - 240px); 
+            height: calc(100vh - 716px); 
             box-sizing: border-box;
             pointer-events: auto; 
             z-index: 95;
@@ -149,20 +163,34 @@
         }
 
         .scroll-footer a {
-            font-size: 64px; 
-            font-weight: 200; 
+            font-size: 48px; 
+            font-weight: 350; 
             letter-spacing: -0.02em;
             line-height: 1;
             margin: 0;
             color: var(--text-color);
         }
 
+        .page-definition {
+            height: 320px;
+            padding: 80px 20px 0 20px;
+            box-sizing: border-box;
+        }
+
+        .page-footer-text {
+            height: 136px;
+            padding: 0 20px 40px 20px;
+            box-sizing: border-box;
+        }
+
         .bottom-nav-left {
+            height: 260px;
+            padding-bottom: 20px;
+            box-sizing: border-box;
             position: relative;
             width: 100%;
             z-index: 90;
             pointer-events: none;
-            padding-bottom: 20px;
         }
 
         #lightbox {
@@ -192,9 +220,9 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            font-size: 64px;
-            font-weight: 200;
-            line-height: 1.1;
+            font-size: 48px;
+            font-weight: 350;
+            line-height: 1;
             letter-spacing: -0.02em;
             cursor: pointer;
             z-index: 301;
@@ -205,8 +233,8 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 64px;
-            font-weight: 200;
+            font-size: 48px;
+            font-weight: 350;
             line-height: 1;
             cursor: pointer;
             z-index: 301;
@@ -255,9 +283,9 @@
             position: absolute;
             top: 20px;
             left: 20px;
-            font-size: 64px; 
-            font-weight: 200;
-            line-height: 1.1;
+            font-size: 48px; 
+            font-weight: 350;
+            line-height: 1;
             letter-spacing: -0.02em;
             margin: 0;
         }
@@ -267,9 +295,9 @@
             top: 20px;
             right: 20px;
             cursor: pointer;
-            font-size: 64px; 
-            font-weight: 200;
-            line-height: 1.1;
+            font-size: 48px; 
+            font-weight: 350;
+            line-height: 1;
             letter-spacing: -0.02em;
             margin: 0;
         }
@@ -278,9 +306,9 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
-            font-size: 64px; 
-            font-weight: 200;
-            line-height: 1.1;
+            font-size: 48px; 
+            font-weight: 350;
+            line-height: 1;
             letter-spacing: -0.02em;
         }
 
@@ -288,17 +316,17 @@
             display: block;
             margin-bottom: 15px;
             opacity: 0.5;
-            font-size: 64px; 
-            font-weight: 200;
-            line-height: 1.1;
+            font-size: 48px; 
+            font-weight: 350;
+            line-height: 1;
             letter-spacing: -0.02em;
             font-style: italic; 
         }
 
         .overlay-footer-text {
-            font-size: 64px;
-            font-weight: 200;
-            line-height: 1.1;
+            font-size: 48px;
+            font-weight: 350;
+            line-height: 1;
             letter-spacing: -0.02em;
             opacity: 0.5;
         }
@@ -327,11 +355,22 @@
                 font-size: 48px;
             }
             .scroll-footer {
-                height: calc(100vh - 180px);
-                padding: 85px 20px 0 20px;
+                padding-top: 68px; 
+                height: calc(100vh - 664px);
             }
             .scroll-footer a {
                 font-size: 48px;
+            }
+            .page-definition {
+                height: 360px;
+                padding: 80px 20px 0 20px;
+            }
+            .bottom-nav-left {
+                height: 200px;
+            }
+            .page-footer-text {
+                height: 104px;
+                padding: 0 20px 40px 20px;
             }
             .lightbox-close {
                 font-size: 48px;
@@ -368,6 +407,9 @@
                 font-size: 32px;
                 padding: 15px;
             }
+            .contact-btn {
+                padding: 8px 24px;
+            }
             .sticky-nav-ing {
                 top: 15px;
                 left: 15px;
@@ -389,14 +431,25 @@
                 grid-template-columns: 1fr; 
             }
             .scroll-footer {
-                height: calc(100vh - 120px);
-                padding: 65px 15px 0 15px;
+                padding-top: 47px;
+                padding-left: 15px;
+                padding-right: 15px;
+                height: calc(100vh - 687px);
             }
             .scroll-footer a {
                 font-size: 32px;
             }
+            .page-definition {
+                height: 480px;
+                padding: 40px 15px 0 15px;
+            }
             .bottom-nav-left {
+                height: 135px;
                 padding-bottom: 15px;
+            }
+            .page-footer-text {
+                height: 72px;
+                padding: 0 15px 40px 15px;
             }
             .lightbox-close, .lightbox-nav {
                 font-size: 32px;
@@ -432,7 +485,8 @@
 <body>
 
     <div class="nav-right" id="nav-right">
-        <a id="about-btn" data-en="Definition" data-tr="Tanım">Definition</a>
+        <a href="contact" class="contact-btn" data-en="Contact" data-tr="İletişim">Contact</a>
+        <a id="about-btn" data-en="About" data-tr="Hakkında">About</a>
         <a id="lang-btn">Türkçe</a>
     </div>
 
@@ -491,11 +545,26 @@
         <a href="mailto:contact@hyphen.ing">contact@hyphen.ing</a>
     </div>
 
+    <div class="definition-grid page-definition">
+        <div>
+            <span class="word-title" data-en="hyphen (noun)" data-tr="tire (isim)">hyphen (noun)</span>
+            <span data-en="The mark ( - ) used to join two things together to make a new one." data-tr="İki şeyi birleştirip yeni bir şey oluşturmak için kullanılan işaret ( - ).">The mark ( - ) used to join two things together to make a new one.</span>
+        </div>
+        <div>
+            <span class="word-title" data-en="-ing (suffix)" data-tr="-ing (sonek)">-ing (suffix)</span>
+            <span data-en="Referring to an action, process, or material." data-tr="Bir eylemi, süreci veya materyali ifade eder.">Referring to an action, process, or material.</span>
+        </div>
+    </div>
+
     <div class="bottom-nav-left">
         <div class="huge-ing">
             <div class="huge-hyphen"></div>
             <div class="huge-text">ING</div>
         </div>
+    </div>
+
+    <div class="overlay-footer-text page-footer-text" data-en="© -ING 2024. All rights reserved." data-tr="© -ING 2024. Tüm hakları saklıdır.">
+        © -ING 2024. All rights reserved.
     </div>
 
     <div id="lightbox">
@@ -509,20 +578,15 @@
         <div class="overlay-nav-ing">-ING</div>
         <a class="close-btn" id="close-btn" data-en="Close" data-tr="Kapat">Close</a>
         
-        <div class="definition-grid">
+        <div class="definition-grid" style="grid-template-columns: 1fr;">
             <div>
-                <span class="word-title" data-en="hyphen (noun)" data-tr="tire (isim)">hyphen (noun)</span>
-                <span data-en="The mark ( - ) used to join two things together to make a new one." data-tr="İki şeyi birleştirip yeni bir şey oluşturmak için kullanılan işaret ( - ).">The mark ( - ) used to join two things together to make a new one.</span>
+                <span class="word-title">Ilgın Nehir Günay</span>
+                <div data-en="- Founder and Architect at -ING" data-tr="- -ING'de Kurucu ve Mimar">- Founder and Architect at -ING</div>
+                <div data-en="- Construction Site Manager for Xiaomi Mi Stores" data-tr="- Xiaomi Mi Mağazaları Şantiye Şefi">- Construction Site Manager for Xiaomi Mi Stores</div>
+                <div data-en="- Project Architect for facade restorations more than 10 projects" data-tr="- 10'dan fazla cephe restorasyonu projesinde Proje Mimarı">- Project Architect for facade restorations more than 10 projects</div>
+                <div data-en="- Construction Site Manager for Tecno Mobile Phone Factory" data-tr="- Tecno Cep Telefonu Fabrikası Şantiye Şefi">- Construction Site Manager for Tecno Mobile Phone Factory</div>
+                <div data-en="- Lead Designer/Project Manager for Les Benjamins reSEARCH" data-tr="- Les Benjamins reSEARCH Lider Tasarımcı/Proje Yöneticisi">- Lead Designer/Project Manager for Les Benjamins reSEARCH</div>
             </div>
-            <div>
-                <span class="word-title" data-en="-ing (suffix)" data-tr="-ing (sonek)">-ing (suffix)</span>
-                <span data-en="Referring to an action, process, or material." data-tr="Bir eylemi, süreci veya materyali ifade eder.">Referring to an action, process, or material.</span>
-            </div>
-        </div>
-
-        <div class="overlay-footer-text" data-en="Website designed and coded by Ilgın Nehir Günay.<br>© -ING 2024. All rights reserved." data-tr="Bu internet sitesinin tasarımı ve kodlaması, Ilgın Nehir Günay tarafından yapıldı.<br>© -ING 2024. Tüm hakları saklıdır.">
-            Website designed and coded by Ilgın Nehir Günay.<br>
-            © -ING 2024. All rights reserved.
         </div>
     </div>
 
