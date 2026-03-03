@@ -76,17 +76,6 @@
             color: #ffffff;
         }
 
-        .contact-btn {
-            background-color: #ffffff;
-            color: #000000;
-            border-radius: 100px;
-            padding: 12px 36px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            box-sizing: border-box;
-        }
-
         .sticky-nav-ing {
             position: fixed;
             top: 32px; 
@@ -155,7 +144,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            height: calc(100vh - 665px); 
+            height: calc(100vh - 240px); 
             box-sizing: border-box;
             pointer-events: auto; 
             z-index: 95;
@@ -171,21 +160,8 @@
             color: var(--text-color);
         }
 
-        .page-definition {
-            height: 320px;
-            padding: 80px 20px 0 20px;
-            box-sizing: border-box;
-        }
-
-        .page-footer-text {
-            height: 85px;
-            padding: 0 20px 5px 20px;
-            box-sizing: border-box;
-        }
-
         .bottom-nav-left {
-            height: 260px;
-            padding-bottom: 20px;
+            height: 240px;
             box-sizing: border-box;
             position: relative;
             width: 100%;
@@ -267,7 +243,9 @@
             transition: opacity 0.4s ease;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
+            gap: 80px;
+            overflow-y: auto;
         }
 
         #about-overlay.active {
@@ -339,9 +317,6 @@
             .nav-right {
                 font-size: 36px;
             }
-            .contact-btn {
-                padding: 10px 24px;
-            }
             .sticky-nav-ing {
                 font-size: 36px;
                 top: 30px;
@@ -360,21 +335,13 @@
             }
             .scroll-footer {
                 padding-top: 66px; 
-                height: calc(100vh - 605px);
+                height: calc(100vh - 180px);
             }
             .scroll-footer a {
                 font-size: 36px;
             }
-            .page-definition {
-                height: 320px;
-                padding: 80px 20px 0 20px;
-            }
             .bottom-nav-left {
-                height: 200px;
-            }
-            .page-footer-text {
-                height: 85px;
-                padding: 0 20px 5px 20px;
+                height: 180px;
             }
             .lightbox-close {
                 font-size: 36px;
@@ -414,9 +381,6 @@
                 padding: 20px 15px;
                 gap: 15px;
             }
-            .contact-btn {
-                padding: 8px 20px;
-            }
             .sticky-nav-ing {
                 top: 28px;
                 left: 15px;
@@ -438,31 +402,23 @@
                 grid-template-columns: 1fr; 
             }
             .scroll-footer {
-                padding-top: 49px;
+                padding-top: 52px;
                 padding-left: 15px;
                 padding-right: 15px;
-                height: calc(100vh - 540px);
+                height: calc(100vh - 120px);
             }
             .scroll-footer a {
                 font-size: 24px;
             }
-            .page-definition {
-                height: 340px;
-                padding: 60px 15px 0 15px;
-            }
             .bottom-nav-left {
-                height: 135px;
-                padding-bottom: 15px;
-            }
-            .page-footer-text {
-                height: 65px;
-                padding: 0 15px 5px 15px;
+                height: 120px;
             }
             .lightbox-close, .lightbox-nav {
                 font-size: 24px;
             }
             #about-overlay {
                 padding: 80px 15px 20px 15px;
+                gap: 40px;
             }
             .overlay-nav-ing {
                 top: 28px;
@@ -492,7 +448,6 @@
 <body>
 
     <div class="nav-right" id="nav-right">
-        <a href="contact" class="contact-btn" data-en="Contact" data-tr="İletişim">Contact</a>
         <a id="about-btn" data-en="About" data-tr="Hakkında">About</a>
         <a id="lang-btn">Türkçe</a>
     </div>
@@ -567,19 +522,9 @@
     </main>
 
     <div class="scroll-footer">
+        <a href="mailto:contact@hyphen.ing">Email</a>
         <a href="https://www.instagram.com/hyphen.ing" target="_blank">Instagram</a>
-        <a href="mailto:contact@hyphen.ing">contact@hyphen.ing</a>
-    </div>
-
-    <div class="definition-grid page-definition">
-        <div>
-            <span class="word-title" data-en="hyphen (noun)" data-tr="tire (isim)">hyphen (noun)</span>
-            <span data-en="The mark ( - ) used to join two things together to make a new one." data-tr="İki şeyi birleştirip yeni bir şey oluşturmak için kullanılan işaret ( - ).">The mark ( - ) used to join two things together to make a new one.</span>
-        </div>
-        <div>
-            <span class="word-title" data-en="-ing (suffix)" data-tr="-ing (sonek)">-ing (suffix)</span>
-            <span data-en="Referring to an action, process, or material." data-tr="Bir eylemi, süreci veya materyali ifade eder.">Referring to an action, process, or material.</span>
-        </div>
+        <a href="https://x.com/ilginnehirgunay" target="_blank">Twitter</a>
     </div>
 
     <div class="bottom-nav-left">
@@ -587,10 +532,6 @@
             <div class="huge-hyphen"></div>
             <div class="huge-text">ING</div>
         </div>
-    </div>
-
-    <div class="overlay-footer-text page-footer-text" data-en="© -ING 2024. All rights reserved." data-tr="© -ING 2024. Tüm hakları saklıdır.">
-        © -ING 2024. All rights reserved.
     </div>
 
     <div id="lightbox">
@@ -604,6 +545,17 @@
         <div class="overlay-nav-ing">-ING</div>
         <a class="close-btn" id="close-btn" data-en="Close" data-tr="Kapat">Close</a>
         
+        <div class="definition-grid">
+            <div>
+                <span class="word-title" data-en="hyphen (noun)" data-tr="tire (isim)">hyphen (noun)</span>
+                <span data-en="The mark ( - ) used to join two things together to make a new one." data-tr="İki şeyi birleştirip yeni bir şey oluşturmak için kullanılan işaret ( - ).">The mark ( - ) used to join two things together to make a new one.</span>
+            </div>
+            <div>
+                <span class="word-title" data-en="-ing (suffix)" data-tr="-ing (sonek)">-ing (suffix)</span>
+                <span data-en="Referring to an action, process, or material." data-tr="Bir eylemi, süreci veya materyali ifade eder.">Referring to an action, process, or material.</span>
+            </div>
+        </div>
+
         <div class="definition-grid" style="grid-template-columns: 1fr;">
             <div>
                 <span class="word-title" style="font-style: normal;">Ilgın Nehir Günay</span>
