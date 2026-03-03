@@ -57,10 +57,11 @@
 
         .nav-right {
             position: fixed; 
-            top: 0; 
+            top: 10px; 
             left: 0;
             width: 100%;
-            padding: 20px;
+            padding: 0 20px;
+            height: 48px;
             box-sizing: border-box;
             display: flex;
             justify-content: flex-end;
@@ -78,7 +79,7 @@
 
         .sticky-nav-ing {
             position: fixed;
-            top: 32px; 
+            top: 10px; 
             left: 20px;
             font-size: 48px; 
             font-weight: 350;
@@ -92,7 +93,7 @@
         }
 
         main {
-            padding: 80px 20px 0 20px; 
+            padding: 58px 20px 0 20px; 
             width: 100%; 
             box-sizing: border-box;
         }
@@ -138,15 +139,15 @@
         }
 
         .scroll-footer {
-            padding-top: 80px; 
+            padding-top: 58px; 
             padding-left: 20px;
             padding-right: 20px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            height: calc(100vh - 240px); 
+            height: calc(100vh - 250px); 
             box-sizing: border-box;
-            pointer-events: auto; 
+            pointer-events: none; 
             z-index: 95;
             position: relative;
         }
@@ -158,10 +159,12 @@
             line-height: 1;
             margin: 0;
             color: var(--text-color);
+            pointer-events: auto;
         }
 
         .bottom-nav-left {
-            height: 240px;
+            height: 250px;
+            padding-bottom: 10px;
             box-sizing: border-box;
             position: relative;
             width: 100%;
@@ -259,7 +262,7 @@
 
         .overlay-nav-ing {
             position: absolute;
-            top: 32px;
+            top: 10px;
             left: 20px;
             font-size: 48px; 
             font-weight: 350;
@@ -270,7 +273,7 @@
 
         .close-btn {
             position: absolute;
-            top: 32px;
+            top: 10px;
             right: 20px;
             cursor: pointer;
             font-size: 48px; 
@@ -301,14 +304,6 @@
             font-style: normal; 
         }
 
-        .overlay-footer-text {
-            font-size: 48px;
-            font-weight: 350;
-            line-height: 1;
-            letter-spacing: -0.02em;
-            opacity: 0.5;
-        }
-
         @media (max-width: 1024px) {
             .huge-ing {
                 height: 180px;
@@ -316,13 +311,13 @@
             }
             .nav-right {
                 font-size: 36px;
+                height: 36px;
             }
             .sticky-nav-ing {
                 font-size: 36px;
-                top: 30px;
             }
             main {
-                padding: 66px 20px 0 20px;
+                padding: 46px 20px 0 20px;
             }
             .intro-text {
                 font-size: 36px;
@@ -334,14 +329,14 @@
                 font-size: 36px;
             }
             .scroll-footer {
-                padding-top: 66px; 
-                height: calc(100vh - 180px);
+                padding-top: 46px; 
+                height: calc(100vh - 190px);
             }
             .scroll-footer a {
                 font-size: 36px;
             }
             .bottom-nav-left {
-                height: 180px;
+                height: 190px;
             }
             .lightbox-close {
                 font-size: 36px;
@@ -351,11 +346,11 @@
             }
             .overlay-nav-ing {
                 font-size: 36px;
-                top: 30px;
+                top: 10px;
             }
             .close-btn {
                 font-size: 36px;
-                top: 30px;
+                top: 10px;
             }
             .definition-grid {
                 font-size: 36px;
@@ -363,9 +358,6 @@
             }
             .word-title {
                 font-size: 36px;
-            }
-            .overlay-footer-text {
-                font-size: 32px;
             }
         }
 
@@ -378,16 +370,16 @@
             .nav-right {
                 top: 0; 
                 font-size: 24px;
-                padding: 20px 15px;
+                padding: 0 15px;
+                height: 24px;
                 gap: 15px;
             }
             .sticky-nav-ing {
-                top: 28px;
                 left: 15px;
                 font-size: 24px;
             }
             main {
-                padding: 52px 15px 0 15px; 
+                padding: 34px 15px 0 15px; 
             }
             .intro-text {
                 font-size: 24px;
@@ -402,16 +394,17 @@
                 grid-template-columns: 1fr; 
             }
             .scroll-footer {
-                padding-top: 52px;
+                padding-top: 34px;
                 padding-left: 15px;
                 padding-right: 15px;
-                height: calc(100vh - 120px);
+                height: calc(100vh - 130px);
             }
             .scroll-footer a {
                 font-size: 24px;
             }
             .bottom-nav-left {
-                height: 120px;
+                height: 130px;
+                padding-bottom: 15px;
             }
             .lightbox-close, .lightbox-nav {
                 font-size: 24px;
@@ -421,12 +414,12 @@
                 gap: 40px;
             }
             .overlay-nav-ing {
-                top: 28px;
+                top: 10px;
                 left: 15px;
                 font-size: 24px;
             }
             .close-btn {
-                top: 28px;
+                top: 10px;
                 right: 15px;
                 font-size: 24px;
             }
@@ -438,9 +431,6 @@
             .word-title {
                 font-size: 24px;
                 margin-bottom: 5px;
-            }
-            .overlay-footer-text {
-                font-size: 16px;
             }
         }
     </style>
@@ -516,7 +506,7 @@
             <img src="/images/lb-research/lb-research-multitool.webp" alt="Les Benjamins reSEARCH Multitool">
         </div>
 
-        <div class="overlay-footer-text" style="font-style: italic; margin-bottom: 120px;" data-en="All the photos are courtesy of Les Benjamins reSEARCH." data-tr="Tüm fotoğraflar Les Benjamins reSEARCH'ün izniyle kullanılmıştır.">
+        <div style="font-style: italic; margin-bottom: 120px; opacity: 0.5; font-size: 48px; font-weight: 350; line-height: 1; letter-spacing: -0.02em;" data-en="All the photos are courtesy of Les Benjamins reSEARCH." data-tr="Tüm fotoğraflar Les Benjamins reSEARCH'ün izniyle kullanılmıştır.">
             All the photos are courtesy of Les Benjamins reSEARCH.
         </div>
     </main>

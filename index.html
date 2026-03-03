@@ -66,10 +66,11 @@
 
         .nav-right {
             position: absolute;
-            top: 240px; 
+            top: 250px; 
             left: 0;
             width: 100%;
-            padding: 20px;
+            padding: 0 20px;
+            height: 48px;
             box-sizing: border-box;
             display: flex;
             justify-content: flex-end;
@@ -87,12 +88,12 @@
 
         .nav-right.fixed {
             position: fixed;
-            top: 0;
+            top: 10px;
         }
 
         .sticky-nav-ing {
             position: fixed;
-            top: 32px; 
+            top: 10px; 
             left: 20px;
             font-size: 48px; 
             font-weight: 350;
@@ -156,15 +157,15 @@
         }
 
         .scroll-footer {
-            padding-top: 80px; 
+            padding-top: 58px; 
             padding-left: 20px;
             padding-right: 20px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            height: calc(100vh - 240px); 
+            height: calc(100vh - 250px); 
             box-sizing: border-box;
-            pointer-events: auto; 
+            pointer-events: none; 
             z-index: 95;
             position: relative;
         }
@@ -176,10 +177,12 @@
             line-height: 1;
             margin: 0;
             color: var(--text-color);
+            pointer-events: auto;
         }
 
         .bottom-nav-left {
-            height: 240px;
+            height: 250px;
+            padding-bottom: 10px;
             box-sizing: border-box;
             position: relative;
             width: 100%;
@@ -219,7 +222,7 @@
 
         .overlay-nav-ing {
             position: absolute;
-            top: 32px;
+            top: 10px;
             left: 20px;
             font-size: 48px; 
             font-weight: 350;
@@ -230,7 +233,7 @@
 
         .close-btn {
             position: absolute;
-            top: 32px;
+            top: 10px;
             right: 20px;
             cursor: pointer;
             font-size: 48px; 
@@ -261,26 +264,19 @@
             font-style: normal; 
         }
 
-        .overlay-footer-text {
-            font-size: 48px;
-            font-weight: 350;
-            line-height: 1;
-            letter-spacing: -0.02em;
-            opacity: 0.5;
-        }
-
         @media (max-width: 1024px) {
             .huge-ing {
                 height: 180px;
                 font-size: 180px;
             }
             .nav-right {
-                top: 180px;
+                top: 190px;
                 font-size: 36px;
+                height: 36px;
             }
             .sticky-nav-ing {
-                top: 30px;
                 font-size: 36px;
+                top: 10px;
             }
             main {
                 padding: 240px 20px 0 20px;
@@ -290,21 +286,21 @@
                 margin-top: calc(100vh - 420px);
             }
             .scroll-footer {
-                padding-top: 66px; 
-                height: calc(100vh - 180px);
+                padding-top: 46px; 
+                height: calc(100vh - 190px);
             }
             .scroll-footer a {
                 font-size: 36px;
             }
             .bottom-nav-left {
-                height: 180px;
+                height: 190px;
             }
             .overlay-nav-ing {
-                top: 30px;
+                top: 10px;
                 font-size: 36px;
             }
             .close-btn {
-                top: 30px;
+                top: 10px;
                 font-size: 36px;
             }
             .definition-grid {
@@ -313,9 +309,6 @@
             }
             .word-title {
                 font-size: 36px;
-            }
-            .overlay-footer-text {
-                font-size: 32px;
             }
         }
 
@@ -326,13 +319,14 @@
                 padding: 0 15px;
             }
             .nav-right {
-                top: 120px;
+                top: 130px;
                 font-size: 24px;
-                padding: 20px 15px;
+                padding: 0 15px;
+                height: 24px;
                 gap: 15px;
             }
             .sticky-nav-ing {
-                top: 28px;
+                top: 10px;
                 left: 15px;
                 font-size: 24px;
             }
@@ -341,34 +335,34 @@
             }
             .intro-text {
                 font-size: 24px;
-                margin-top: 80px; 
+                margin-top: 120px; 
             }
             .project-grid {
                 grid-template-columns: 1fr;
             }
             .scroll-footer {
-                padding-top: 52px;
+                padding-top: 34px;
                 padding-left: 15px;
                 padding-right: 15px;
-                height: calc(100vh - 120px);
+                height: calc(100vh - 130px);
             }
             .scroll-footer a {
                 font-size: 24px;
             }
             .bottom-nav-left {
-                height: 120px;
+                height: 130px;
             }
             #about-overlay {
                 padding: 80px 15px 20px 15px;
                 gap: 40px;
             }
             .overlay-nav-ing {
-                top: 28px;
+                top: 10px;
                 left: 15px;
                 font-size: 24px;
             }
             .close-btn {
-                top: 28px;
+                top: 10px;
                 right: 15px;
                 font-size: 24px;
             }
@@ -380,9 +374,6 @@
             .word-title {
                 font-size: 24px;
                 margin-bottom: 5px;
-            }
-            .overlay-footer-text {
-                font-size: 16px;
             }
         }
     </style>
@@ -492,7 +483,7 @@
 
         window.addEventListener('scroll', () => {
             const rect = introText.getBoundingClientRect();
-            const topOffset = window.innerWidth <= 768 ? 20 : 20; 
+            const topOffset = window.innerWidth <= 768 ? 10 : 10; 
             
             if (rect.top <= topOffset) {
                 stickyNavIng.classList.add('visible');
