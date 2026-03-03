@@ -66,11 +66,10 @@
 
         .nav-right {
             position: absolute;
-            top: 250px; 
+            top: 240px; 
             left: 0;
             width: 100%;
-            padding: 0 20px;
-            height: 48px;
+            padding: 20px;
             box-sizing: border-box;
             display: flex;
             justify-content: flex-end;
@@ -88,7 +87,7 @@
 
         .nav-right.fixed {
             position: fixed;
-            top: 10px;
+            top: 0;
         }
 
         .sticky-nav-ing {
@@ -163,6 +162,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
+            align-items: flex-start;
             height: calc(100vh - 250px); 
             box-sizing: border-box;
             pointer-events: none; 
