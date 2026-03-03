@@ -34,7 +34,7 @@
 
         header {
             position: absolute;
-            top: 0;
+            top: 10px;
             left: 0;
             width: 100%;
             z-index: 100;
@@ -66,10 +66,11 @@
 
         .nav-right {
             position: absolute;
-            top: 240px; 
+            top: 250px; 
             left: 0;
             width: 100%;
-            padding: 20px;
+            height: 48px;
+            padding: 0 20px;
             box-sizing: border-box;
             display: flex;
             justify-content: flex-end;
@@ -87,13 +88,16 @@
 
         .nav-right.fixed {
             position: fixed;
-            top: 0;
+            top: 10px;
         }
 
         .sticky-nav-ing {
             position: fixed;
             top: 10px; 
             left: 20px;
+            height: 48px;
+            display: flex;
+            align-items: center;
             font-size: 48px; 
             font-weight: 350;
             line-height: 1; 
@@ -224,6 +228,9 @@
             position: absolute;
             top: 10px;
             left: 20px;
+            height: 48px;
+            display: flex;
+            align-items: center;
             font-size: 48px; 
             font-weight: 350;
             line-height: 1;
@@ -235,6 +242,9 @@
             position: absolute;
             top: 10px;
             right: 20px;
+            height: 48px;
+            display: flex;
+            align-items: center;
             cursor: pointer;
             font-size: 48px; 
             font-weight: 350;
@@ -271,12 +281,12 @@
             }
             .nav-right {
                 top: 190px;
-                font-size: 36px;
                 height: 36px;
+                font-size: 36px;
             }
             .sticky-nav-ing {
+                height: 36px;
                 font-size: 36px;
-                top: 10px;
             }
             main {
                 padding: 240px 20px 0 20px;
@@ -296,11 +306,11 @@
                 height: 190px;
             }
             .overlay-nav-ing {
-                top: 10px;
+                height: 36px;
                 font-size: 36px;
             }
             .close-btn {
-                top: 10px;
+                height: 36px;
                 font-size: 36px;
             }
             .definition-grid {
@@ -320,14 +330,14 @@
             }
             .nav-right {
                 top: 130px;
+                height: 24px;
                 font-size: 24px;
                 padding: 0 15px;
-                height: 24px;
                 gap: 15px;
             }
             .sticky-nav-ing {
-                top: 10px;
                 left: 15px;
+                height: 24px;
                 font-size: 24px;
             }
             main {
@@ -335,7 +345,7 @@
             }
             .intro-text {
                 font-size: 24px;
-                margin-top: 120px; 
+                margin-top: 80px; 
             }
             .project-grid {
                 grid-template-columns: 1fr;
@@ -351,19 +361,20 @@
             }
             .bottom-nav-left {
                 height: 130px;
+                padding-bottom: 15px;
             }
             #about-overlay {
                 padding: 80px 15px 20px 15px;
                 gap: 40px;
             }
             .overlay-nav-ing {
-                top: 10px;
                 left: 15px;
+                height: 24px;
                 font-size: 24px;
             }
             .close-btn {
-                top: 10px;
                 right: 15px;
+                height: 24px;
                 font-size: 24px;
             }
             .definition-grid {
@@ -436,7 +447,7 @@
         <div class="overlay-nav-ing">-ING</div>
         <a class="close-btn" id="close-btn" data-en="Close" data-tr="Kapat">Close</a>
         
-        <div class="definition-grid">
+        <div class="definition-grid page-definition">
             <div>
                 <span class="word-title" data-en="hyphen (noun)" data-tr="tire (isim)">hyphen (noun)</span>
                 <span data-en="The mark ( - ) used to join two things together to make a new one." data-tr="İki şeyi birleştirip yeni bir şey oluşturmak için kullanılan işaret ( - ).">The mark ( - ) used to join two things together to make a new one.</span>
