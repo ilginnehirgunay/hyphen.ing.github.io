@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>-ING</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='white'/%3E%3Ctext x='50' y='75' font-family='Arial, sans-serif' font-size='100' text-anchor='middle' fill='black'%3E-%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='white'/%3E%3Ctext x='50' y='75' font-family='Arial, sans-serif' font-size='100' text-anchor='middle' fill='%231d1d1f'%3E-%3C/text%3E%3C/svg%3E">
     <style>
         :root {
             --bg-color: #ffffff; 
-            --text-color: #000000; 
+            --text-color: #1d1d1f; 
             --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
@@ -135,6 +135,18 @@
             display: inline-block;
         }
 
+        .cat-link {
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 6px;
+            transition: opacity 0.3s ease;
+        }
+
+        .cat-link:hover {
+            opacity: 0.5;
+        }
+
         .project-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -144,6 +156,7 @@
 
         .project-card {
             display: block;
+            transition: opacity 0.4s ease;
         }
 
         .project-card img {
@@ -271,7 +284,7 @@
             font-weight: 350;
             line-height: 1;
             letter-spacing: -0.02em;
-            font-style: normal; 
+            font-style: italic; 
         }
 
         @media (max-width: 1024px) {
@@ -413,24 +426,24 @@
 
     <main>
         <div class="intro-text">
-            <span id="intro-ing-word">-ING</span> <span data-en="is a multidisciplinary design collective. Architecture, art, engineering, fashion design, graphic design, industrial design, and type design are our work fields." data-tr="çok disiplinli bir tasarım kolektifidir. Çalışma alanlarımız, mimarlık, sanat, mühendislik, moda tasarım, grafik tasarım, endüstriyel tasarım ve tipografi tasarımından oluşur.">is a multidisciplinary design collective. Architecture, art, engineering, fashion design, graphic design, industrial design, and type design are our work fields.</span>
+            <span id="intro-ing-word">-ING</span> <span data-en="is a multidisciplinary design collective. <span class='cat-link' data-cat='Architecture'>Architecture</span>, <span class='cat-link' data-cat='Art'>art</span>, <span class='cat-link' data-cat='Engineering'>engineering</span>, <span class='cat-link' data-cat='Fashion Design'>fashion design</span>, <span class='cat-link' data-cat='Graphic Design'>graphic design</span>, <span class='cat-link' data-cat='Industrial Design'>industrial design</span>, and <span class='cat-link' data-cat='Type Design'>type design</span> are our work fields." data-tr="çok disiplinli bir tasarım kolektifidir. Çalışma alanlarımız, <span class='cat-link' data-cat='Architecture'>mimarlık</span>, <span class='cat-link' data-cat='Art'>sanat</span>, <span class='cat-link' data-cat='Engineering'>mühendislik</span>, <span class='cat-link' data-cat='Fashion Design'>moda tasarım</span>, <span class='cat-link' data-cat='Graphic Design'>grafik tasarım</span>, <span class='cat-link' data-cat='Industrial Design'>endüstriyel tasarım</span> ve <span class='cat-link' data-cat='Type Design'>tipografi tasarımından</span> oluşur.">is a multidisciplinary design collective. <span class='cat-link' data-cat='Architecture'>Architecture</span>, <span class='cat-link' data-cat='Art'>art</span>, <span class='cat-link' data-cat='Engineering'>engineering</span>, <span class='cat-link' data-cat='Fashion Design'>fashion design</span>, <span class='cat-link' data-cat='Graphic Design'>graphic design</span>, <span class='cat-link' data-cat='Industrial Design'>industrial design</span>, and <span class='cat-link' data-cat='Type Design'>type design</span> are our work fields.</span>
         </div>
 
         <div class="project-grid">
-            <a href="ohmsole-store" class="project-card">
+            <a href="ohmsole-store" class="project-card" data-cats="Architecture,Engineering,Industrial Design">
                 <img src="/images/ohmsole-store/ohmsole-general-orthographic-render.webp" alt="OhmSole Store">
                 <div class="project-title">OhmSole Store</div>
             </a>
-            <a href="les-benjamins-research" class="project-card">
-                <img src="/images/lb-research/lb-research-bench-side.webp" alt="Project 2">
+            <a href="les-benjamins-research" class="project-card" data-cats="Engineering,Fashion Design,Graphic Design,Industrial Design">
+                <img src="/images/lb-research/lb-research-bench-side.webp" alt="Les Benjamins reSEARCH">
                 <div class="project-title">Les Benjamins reSEARCH</div>
             </a>
-            <a href="later-hotpot-restaurant" class="project-card">
-                <img src="/images/later-restaurant/later-entrance.webp" alt="Project 3">
+            <a href="later-hotpot-restaurant" class="project-card" data-cats="Architecture,Engineering">
+                <img src="/images/later-restaurant/later-entrance.webp" alt="Later Hotpot Restaurant">
                 <div class="project-title">Later Hotpot Restaurant</div>
             </a>
-            <a href="xiaomi-mi-stores" class="project-card">
-                <img src="/images/xiaomi-mi-stores/mi-stores-general.webp" alt="Project 4">
+            <a href="xiaomi-mi-stores" class="project-card" data-cats="Architecture,Engineering,Industrial Design">
+                <img src="/images/xiaomi-mi-stores/mi-stores-general.webp" alt="Xiaomi Mi Stores">
                 <div class="project-title">Xiaomi Mi Stores</div>
             </a>
         </div>
@@ -459,19 +472,14 @@
                 <span data-en="The mark ( - ) used to join two things together to make a new one." data-tr="İki şeyi birleştirip yeni bir şey oluşturmak için kullanılan işaret ( - ).">The mark ( - ) used to join two things together to make a new one.</span>
             </div>
             <div>
-                <span class="word-title" data-en="-ing (suffix)" data-tr="-ing (sonek)">-ing (suffix)</span>
+                <span class="word-title" data-en="-ing (suffix)" data-tr="-ing (İngilizce'de sonek)">-ing (suffix)</span>
                 <span data-en="Referring to an action, process, or material." data-tr="Bir eylemi, süreci veya materyali ifade eder.">Referring to an action, process, or material.</span>
             </div>
         </div>
 
         <div class="definition-grid" style="grid-template-columns: 1fr;">
-            <div>
-                <span class="word-title" style="font-style: normal;">Ilgın Nehir Günay</span>
-                <div data-en="- Founder and Architect at -ING" data-tr="- -ING'de Kurucu ve Mimar">- Founder and Architect at -ING</div>
-                <div data-en="- Construction Site Manager for Xiaomi Mi Stores" data-tr="- Xiaomi Mi Mağazaları Şantiye Şefi">- Construction Site Manager for Xiaomi Mi Stores</div>
-                <div data-en="- Project Architect for facade restorations more than 10 projects" data-tr="- 10'dan fazla cephe restorasyonu projesinde Proje Mimarı">- Project Architect for facade restorations more than 10 projects</div>
-                <div data-en="- Construction Site Manager for Tecno Mobile Phone Factory" data-tr="- Tecno Cep Telefonu Fabrikası Şantiye Şefi">- Construction Site Manager for Tecno Mobile Phone Factory</div>
-                <div data-en="- Lead Designer/Project Manager for Les Benjamins reSEARCH" data-tr="- Les Benjamins reSEARCH Lider Tasarımcı/Proje Yöneticisi">- Lead Designer/Project Manager for Les Benjamins reSEARCH</div>
+            <div data-en="Ilgın Nehir Günay is an architect and designer focused on the intersection of industrial precision and the functionality. Through -ING, we lead a multidisciplinary practice that spans large-scale commercial construction to the intimate fabrication of raw stainless-steel and plywood furniture. By blending technical software tools with a hands-on approach, we strive to strip away the superfluous—creating spaces and objects that prioritize structural honesty and utilitarian purpose." data-tr="Ilgın Nehir Günay, endüstriyel hassasiyet ve işlevselliğin kesişimine odaklanan bir mimar ve tasarımcıdır. -ING aracılığıyla, büyük ölçekli ticari inşaatlardan ham paslanmaz çelik ve kontrplak mobilyaların butik üretimine kadar uzanan çok disiplinli bir pratiğe öncülük ediyoruz. Teknik yazılım araçlarını pratik bir yaklaşımla harmanlayarak, gereksiz olanı ortadan kaldırmayı; yapısal dürüstlüğü ve faydacı amacı ön planda tutan mekanlar ve nesneler yaratmayı hedefliyoruz.">
+                Ilgın Nehir Günay is an architect and designer focused on the intersection of industrial precision and the functionality. Through -ING, we lead a multidisciplinary practice that spans large-scale commercial construction to the intimate fabrication of raw stainless-steel and plywood furniture. By blending technical software tools with a hands-on approach, we strive to strip away the superfluous—creating spaces and objects that prioritize structural honesty and utilitarian purpose.
             </div>
         </div>
     </div>
@@ -527,6 +535,7 @@
             translatableElements.forEach(el => {
                 el.innerHTML = el.getAttribute(`data-${currentLang}`);
             });
+            updateCategoryLinks();
         }
 
         if(langBtn) {
@@ -538,6 +547,43 @@
                 applyLang();
             });
         }
+
+        let activeCat = null;
+        function updateCategoryLinks() {
+            document.querySelectorAll('.cat-link').forEach(link => {
+                if(activeCat && link.getAttribute('data-cat') !== activeCat) {
+                    link.style.opacity = '0.5';
+                } else {
+                    link.style.opacity = '1';
+                }
+            });
+        }
+
+        document.body.addEventListener('click', (e) => {
+            if (e.target.classList.contains('cat-link')) {
+                const cat = e.target.getAttribute('data-cat');
+                if (activeCat === cat) {
+                    activeCat = null; 
+                } else {
+                    activeCat = cat;
+                }
+                
+                updateCategoryLinks();
+
+                document.querySelectorAll('.project-card').forEach(card => {
+                    if (!activeCat) {
+                        card.style.opacity = '1';
+                    } else {
+                        const cats = card.getAttribute('data-cats') || '';
+                        if (cats.includes(activeCat)) {
+                            card.style.opacity = '1';
+                        } else {
+                            card.style.opacity = '0.5';
+                        }
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>

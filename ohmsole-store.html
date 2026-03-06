@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>-ING | OhmSole Store</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='white'/%3E%3Ctext x='50' y='75' font-family='Arial, sans-serif' font-size='100' text-anchor='middle' fill='black'%3E-%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='white'/%3E%3Ctext x='50' y='75' font-family='Arial, sans-serif' font-size='100' text-anchor='middle' fill='%231d1d1f'%3E-%3C/text%3E%3C/svg%3E">
     <style>
         :root {
             --bg-color: #ffffff; 
-            --text-color: #000000; 
+            --text-color: #1d1d1f; 
             --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
@@ -114,6 +114,23 @@
             font-size: 48px;
             font-weight: 350;
             line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .project-features {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .feature-tag {
+            background-color: #86868b;
+            color: #ffffff;
+            font-size: 24px;
+            padding: 10px 30px;
+            border-radius: 100px;
+            font-weight: 350;
             letter-spacing: -0.02em;
         }
 
@@ -311,7 +328,7 @@
             font-weight: 350;
             line-height: 1;
             letter-spacing: -0.02em;
-            font-style: normal; 
+            font-style: italic; 
         }
 
         @media (max-width: 1024px) {
@@ -337,6 +354,14 @@
             }
             .project-location {
                 font-size: 36px;
+            }
+            .project-features {
+                margin-top: 30px;
+                gap: 12px;
+            }
+            .feature-tag {
+                font-size: 20px;
+                padding: 8px 24px;
             }
             .subpage-details {
                 font-size: 36px;
@@ -404,6 +429,14 @@
             .project-location {
                 font-size: 24px;
             }
+            .project-features {
+                margin-top: 20px;
+                gap: 10px;
+            }
+            .feature-tag {
+                font-size: 16px;
+                padding: 6px 20px;
+            }
             .subpage-details {
                 font-size: 24px;
             }
@@ -467,6 +500,11 @@
         <div class="intro-text">
             OhmSole Store
             <div class="project-location" data-en="Istanbul, 2025" data-tr="İstanbul, 2025">Istanbul, 2025</div>
+            <div class="project-features">
+                <span class="feature-tag" data-en="Architecture" data-tr="Mimarlık">Architecture</span>
+                <span class="feature-tag" data-en="Engineering" data-tr="Mühendislik">Engineering</span>
+                <span class="feature-tag" data-en="Industrial Design" data-tr="Endüstriyel Tasarım">Industrial Design</span>
+            </div>
         </div>
         
         <div class="subpage-details" data-en="Commissioned to design and build a 80-square-meter flagship store dedicated to fashion." data-tr="Moda odaklı 80 metrekarelik bir mağaza tasarladık ve inşa ettik.">
@@ -541,19 +579,14 @@
                 <span data-en="The mark ( - ) used to join two things together to make a new one." data-tr="İki şeyi birleştirip yeni bir şey oluşturmak için kullanılan işaret ( - ).">The mark ( - ) used to join two things together to make a new one.</span>
             </div>
             <div>
-                <span class="word-title" data-en="-ing (suffix)" data-tr="-ing (sonek)">-ing (suffix)</span>
+                <span class="word-title" data-en="-ing (suffix)" data-tr="-ing (İngilizce'de sonek)">-ing (suffix)</span>
                 <span data-en="Referring to an action, process, or material." data-tr="Bir eylemi, süreci veya materyali ifade eder.">Referring to an action, process, or material.</span>
             </div>
         </div>
 
         <div class="definition-grid" style="grid-template-columns: 1fr;">
-            <div>
-                <span class="word-title" style="font-style: normal;">Ilgın Nehir Günay</span>
-                <div data-en="- Founder and Architect at -ING" data-tr="- -ING'de Kurucu ve Mimar">- Founder and Architect at -ING</div>
-                <div data-en="- Construction Site Manager for Xiaomi Mi Stores" data-tr="- Xiaomi Mi Mağazaları Şantiye Şefi">- Construction Site Manager for Xiaomi Mi Stores</div>
-                <div data-en="- Project Architect for facade restorations more than 10 projects" data-tr="- 10'dan fazla cephe restorasyonu projesinde Proje Mimarı">- Project Architect for facade restorations more than 10 projects</div>
-                <div data-en="- Construction Site Manager for Tecno Mobile Phone Factory" data-tr="- Tecno Cep Telefonu Fabrikası Şantiye Şefi">- Construction Site Manager for Tecno Mobile Phone Factory</div>
-                <div data-en="- Lead Designer/Project Manager for Les Benjamins reSEARCH" data-tr="- Les Benjamins reSEARCH Lider Tasarımcı/Proje Yöneticisi">- Lead Designer/Project Manager for Les Benjamins reSEARCH</div>
+            <div data-en="Ilgın Nehir Günay is an architect and designer focused on the intersection of industrial precision and the functionality. Through -ING, we lead a multidisciplinary practice that spans large-scale commercial construction to the intimate fabrication of raw stainless-steel and plywood furniture. By blending technical software tools with a hands-on approach, we strive to strip away the superfluous—creating spaces and objects that prioritize structural honesty and utilitarian purpose." data-tr="Ilgın Nehir Günay, endüstriyel hassasiyet ve işlevselliğin kesişimine odaklanan bir mimar ve tasarımcıdır. -ING aracılığıyla, büyük ölçekli ticari inşaatlardan ham paslanmaz çelik ve kontrplak mobilyaların butik üretimine kadar uzanan çok disiplinli bir pratiğe öncülük ediyoruz. Teknik yazılım araçlarını pratik bir yaklaşımla harmanlayarak, gereksiz olanı ortadan kaldırmayı; yapısal dürüstlüğü ve faydacı amacı ön planda tutan mekanlar ve nesneler yaratmayı hedefliyoruz.">
+                Ilgın Nehir Günay is an architect and designer focused on the intersection of industrial precision and the functionality. Through -ING, we lead a multidisciplinary practice that spans large-scale commercial construction to the intimate fabrication of raw stainless-steel and plywood furniture. By blending technical software tools with a hands-on approach, we strive to strip away the superfluous—creating spaces and objects that prioritize structural honesty and utilitarian purpose.
             </div>
         </div>
     </div>
