@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>-ING | Later Hotpot Restaurant</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='white'/%3E%3Ctext x='50' y='75' font-family='Arial, sans-serif' font-size='100' text-anchor='middle' fill='%231d1d1f'%3E-%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='white'/%3E%3Ctext x='50' y='75' font-family='Arial, sans-serif' font-size='100' text-anchor='middle' fill='1d1d1f'%3E-%3C/text%3E%3C/svg%3E">
     <style>
         :root {
             --bg-color: #ffffff; 
@@ -107,7 +107,7 @@
             line-height: 1;
             letter-spacing: -0.02em;
             text-align: left;
-            margin-bottom: 80px;
+            margin-bottom: 40px;
         }
 
         .project-location {
@@ -119,19 +119,22 @@
 
         .project-features {
             display: flex;
-            gap: 15px;
-            margin-top: 40px;
             flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 80px;
         }
 
         .feature-tag {
             background-color: #86868b;
             color: #ffffff;
             font-size: 24px;
-            padding: 10px 30px;
-            border-radius: 100px;
             font-weight: 350;
-            letter-spacing: -0.02em;
+            padding: 12px 36px;
+            border-radius: 100px;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .subpage-details {
@@ -328,7 +331,11 @@
             font-weight: 350;
             line-height: 1;
             letter-spacing: -0.02em;
-            font-style: italic; 
+            font-style: normal; 
+        }
+
+        #about-overlay .word-title {
+            font-style: italic;
         }
 
         @media (max-width: 1024px) {
@@ -355,13 +362,12 @@
             .project-location {
                 font-size: 36px;
             }
-            .project-features {
-                margin-top: 30px;
-                gap: 12px;
-            }
             .feature-tag {
                 font-size: 20px;
-                padding: 8px 24px;
+                padding: 10px 24px;
+            }
+            .project-features {
+                margin-bottom: 60px;
             }
             .subpage-details {
                 font-size: 36px;
@@ -429,13 +435,13 @@
             .project-location {
                 font-size: 24px;
             }
-            .project-features {
-                margin-top: 20px;
-                gap: 10px;
-            }
             .feature-tag {
                 font-size: 16px;
-                padding: 6px 20px;
+                padding: 8px 20px;
+            }
+            .project-features {
+                gap: 10px;
+                margin-bottom: 40px;
             }
             .subpage-details {
                 font-size: 24px;
@@ -500,10 +506,11 @@
         <div class="intro-text">
             Later Hotpot Restaurant
             <div class="project-location" data-en="Istanbul, 2024" data-tr="İstanbul, 2024">Istanbul, 2024</div>
-            <div class="project-features">
-                <span class="feature-tag" data-en="Architecture" data-tr="Mimarlık">Architecture</span>
-                <span class="feature-tag" data-en="Engineering" data-tr="Mühendislik">Engineering</span>
-            </div>
+        </div>
+
+        <div class="project-features">
+            <span class="feature-tag" data-en="Architecture" data-tr="Mimarlık">Architecture</span>
+            <span class="feature-tag" data-en="Engineering" data-tr="Mühendislik">Engineering</span>
         </div>
         
         <div class="subpage-details" data-en="[TEXT PLACEHOLDER]" data-tr="[METİN YER TUTUCU]">
@@ -572,7 +579,7 @@
         <div class="overlay-nav-ing">-ING</div>
         <a class="close-btn" id="close-btn" data-en="Close" data-tr="Kapat">Close</a>
         
-        <div class="definition-grid">
+        <div class="definition-grid page-definition">
             <div>
                 <span class="word-title" data-en="hyphen (noun)" data-tr="tire (isim)">hyphen (noun)</span>
                 <span data-en="The mark ( - ) used to join two things together to make a new one." data-tr="İki şeyi birleştirip yeni bir şey oluşturmak için kullanılan işaret ( - ).">The mark ( - ) used to join two things together to make a new one.</span>
@@ -584,8 +591,11 @@
         </div>
 
         <div class="definition-grid" style="grid-template-columns: 1fr;">
-            <div data-en="Ilgın Nehir Günay is an architect and designer focused on the intersection of industrial precision and the functionality. Through -ING, we lead a multidisciplinary practice that spans large-scale commercial construction to the intimate fabrication of raw stainless-steel and plywood furniture. By blending technical software tools with a hands-on approach, we strive to strip away the superfluous—creating spaces and objects that prioritize structural honesty and utilitarian purpose." data-tr="Ilgın Nehir Günay, endüstriyel hassasiyet ve işlevselliğin kesişimine odaklanan bir mimar ve tasarımcıdır. -ING aracılığıyla, büyük ölçekli ticari inşaatlardan ham paslanmaz çelik ve kontrplak mobilyaların butik üretimine kadar uzanan çok disiplinli bir pratiğe öncülük ediyoruz. Teknik yazılım araçlarını pratik bir yaklaşımla harmanlayarak, gereksiz olanı ortadan kaldırmayı; yapısal dürüstlüğü ve faydacı amacı ön planda tutan mekanlar ve nesneler yaratmayı hedefliyoruz.">
-                Ilgın Nehir Günay is an architect and designer focused on the intersection of industrial precision and the functionality. Through -ING, we lead a multidisciplinary practice that spans large-scale commercial construction to the intimate fabrication of raw stainless-steel and plywood furniture. By blending technical software tools with a hands-on approach, we strive to strip away the superfluous—creating spaces and objects that prioritize structural honesty and utilitarian purpose.
+            <div>
+                <span class="word-title">Ilgın Nehir Günay</span>
+                <div data-en="Ilgın Nehir Günay is an architect and designer focused on the intersection of industrial precision and the functionality. Through -ING, we lead a multidisciplinary practice that spans large-scale commercial construction to the intimate fabrication of raw stainless-steel and plywood furniture. By blending technical software tools with a hands-on approach, we strive to strip away the superfluous—creating spaces and objects that prioritize structural honesty and utilitarian purpose." data-tr="Ilgın Nehir Günay, endüstriyel hassasiyet ile işlevselliğin kesişimine odaklanan bir mimar ve tasarımcıdır. -ING aracılığıyla, büyük ölçekli ticari yapılardan ham paslanmaz çelik ve kontrplak mobilyaların özel üretimine kadar uzanan çok disiplinli bir pratiğe liderlik ediyoruz. Teknik yazılım araçlarını uygulamalı bir yaklaşımla harmanlayarak, yapısal dürüstlüğü ve faydacı amacı ön planda tutan mekanlar ve nesneler yaratıyor, gereksiz olan her şeyi arındırmayı hedefliyoruz.">
+                    Ilgın Nehir Günay is an architect and designer focused on the intersection of industrial precision and the functionality. Through -ING, we lead a multidisciplinary practice that spans large-scale commercial construction to the intimate fabrication of raw stainless-steel and plywood furniture. By blending technical software tools with a hands-on approach, we strive to strip away the superfluous—creating spaces and objects that prioritize structural honesty and utilitarian purpose.
+                </div>
             </div>
         </div>
     </div>
@@ -663,7 +673,7 @@
         const translatableElements = document.querySelectorAll('[data-tr]');
 
         function applyLang() {
-            langBtn.textContent = currentLang === 'en' ? 'Türkçe' : 'English';
+            if(langBtn) langBtn.textContent = currentLang === 'en' ? 'Türkçe' : 'English';
             translatableElements.forEach(el => {
                 el.innerHTML = el.getAttribute(`data-${currentLang}`);
             });
