@@ -556,7 +556,7 @@
     </main>
 
     <div class="scroll-footer">
-        <a href="mailto:contact@hyphen.ing">Email</a>
+        <a href="/cdn-cgi/l/email-protection#61020e0f150002152109181109040f4f080f06">Email</a>
         <a href="https://www.instagram.com/hyphen.ing" target="_blank">Instagram</a>
         <a href="https://x.com/ilginnehirgunay" target="_blank">Twitter</a>
     </div>
@@ -599,18 +599,7 @@
         </div>
     </div>
 
-    <script>
-        const navRight = document.getElementById('nav-right');
-
-        window.addEventListener('scroll', () => {
-            const stickyPoint = window.innerWidth <= 768 ? 120 : (window.innerWidth <= 1024 ? 180 : 240);
-            if (window.scrollY >= stickyPoint) {
-                navRight.classList.add('fixed');
-            } else {
-                navRight.classList.remove('fixed');
-            }
-        });
-
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const aboutBtn = document.getElementById('about-btn');
         const closeBtn = document.getElementById('close-btn');
         const aboutOverlay = document.getElementById('about-overlay');
@@ -672,6 +661,7 @@
         const translatableElements = document.querySelectorAll('[data-tr]');
 
         function applyLang() {
+            document.documentElement.lang = currentLang;
             if(langBtn) langBtn.textContent = currentLang === 'en' ? 'Türkçe' : 'English';
             translatableElements.forEach(el => {
                 el.innerHTML = el.getAttribute(`data-${currentLang}`);
@@ -684,9 +674,25 @@
                 e.preventDefault();
                 currentLang = currentLang === 'en' ? 'tr' : 'en';
                 localStorage.setItem('siteLang', currentLang);
+                document.documentElement.lang = currentLang;
                 applyLang();
             });
         }
+
+        // Keyboard support for lightbox
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            } else if (e.key === 'ArrowLeft') {
+                currentImageIndex = (currentImageIndex - 1 + imageSources.length) % imageSources.length;
+                showLightboxImage();
+            } else if (e.key === 'ArrowRight') {
+                currentImageIndex = (currentImageIndex + 1) % imageSources.length;
+                showLightboxImage();
+            }
+        });
     </script>
 </body>
 </html>
