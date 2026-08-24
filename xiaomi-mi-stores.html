@@ -9,7 +9,7 @@
         :root {
             --bg-color: #ffffff; 
             --text-color: #1d1d1f; 
-            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --font-main: 'Helvetica Neue', Helvetica, sans-serif;
         }
 
         body, html {
@@ -472,13 +472,11 @@
             .overlay-nav-ing {
                 top: 10px;
                 left: 15px;
-                height: 24px;
                 font-size: 24px;
             }
             .close-btn {
                 top: 10px;
                 right: 15px;
-                height: 24px;
                 font-size: 24px;
             }
             .definition-grid {
@@ -560,7 +558,7 @@
     </main>
 
     <div class="scroll-footer">
-        <a href="/cdn-cgi/l/email-protection#adcec2c3d9ccced9edc5d4ddc5c8c383c4c3ca">Email</a>
+        <a href="mailto:contact@hyphen.ing">Email</a>
         <a href="https://www.instagram.com/ilginnehirgunay" target="_blank">Instagram</a>
         <a href="https://x.com/ilginnehirgunay" target="_blank">Twitter</a>
     </div>
@@ -596,14 +594,25 @@
 
         <div class="definition-grid" style="grid-template-columns: 1fr;">
             <div>
-                <div data-en="Ilgın Nehir Günay is an architect and designer focused on the intersection of industrial precision and the functionality. Through -ING, he leads a multidisciplinary practice that spans large-scale commercial construction to the intimate fabrication of raw stainless-steel and plywood furniture. By blending technical software tools with a hands-on approach, he strives to strip away the superfluous—creating spaces and objects that prioritize structural honesty and utilitarian purpose." data-tr="Ilgın Nehir Günay, endüstriyel hassasiyet ile işlevselliğin kesişimine odaklanan bir mimar ve tasarımcıdır. -ING aracılığıyla, büyük ölçekli ticari yapılardan ham paslanmaz çelik ve kontrplak mobilyaların özel üretimine kadar uzanan çok disiplinli bir pratik sürdürür. Teknik tasarım araçlarını uygulamalı bir yaklaşımla harmanlayarak, yapısal dürüstlüğü ve faydacı amacı ön planda tutan mekanlar ve nesneler tasarlar, gereksiz olan tüm detaylardan arındırmayı hedefler.">
-                    Ilgın Nehir Günay is an architect and designer focused on the intersection of industrial precision and the functionality. Through -ING, he leads a multidisciplinary practice that spans large-scale commercial construction to the intimate fabrication of raw stainless-steel and plywood furniture. By blending technical software tools with a hands-on approach, he strives to strip away the superfluous—creating spaces and objects that prioritize structural honesty and utilitarian purpose.
+                <div data-en="Ilgın Nehir Günay is an architect and designer focused on the intersection of industrial precision and the functionality. Through -ING, we lead a multidisciplinary practice that spans large-scale commercial construction to the intimate fabrication of raw stainless-steel and plywood furniture. By blending technical software tools with a hands-on approach, we strive to strip away the superfluous—creating spaces and objects that prioritize structural honesty and utilitarian purpose." data-tr="Ilgın Nehir Günay, endüstriyel hassasiyet ile işlevselliğin kesişimine odaklanan bir mimar ve tasarımcıdır. -ING aracılığıyla, büyük ölçekli ticari yapılardan ham paslanmaz çelik ve kontrplak mobilyaların özel üretimine kadar uzanan çok disiplinli bir pratiğe liderlik ediyoruz. Teknik yazılım araçlarını uygulamalı bir yaklaşımla harmanlayarak, yapısal dürüstlüğü ve faydacı amacı ön planda tutan mekanlar ve nesneler yaratıyor, gereksiz olan her şeyi arındırmayı hedefliyoruz.">
+                    Ilgın Nehir Günay is an architect and designer focused on the intersection of industrial precision and the functionality. Through -ING, we lead a multidisciplinary practice that spans large-scale commercial construction to the intimate fabrication of raw stainless-steel and plywood furniture. By blending technical software tools with a hands-on approach, we strive to strip away the superfluous—creating spaces and objects that prioritize structural honesty and utilitarian purpose.
                 </div>
             </div>
         </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
+        const navRight = document.getElementById('nav-right');
+
+        window.addEventListener('scroll', () => {
+            const stickyPoint = window.innerWidth <= 768 ? 120 : (window.innerWidth <= 1024 ? 180 : 240);
+            if (window.scrollY >= stickyPoint) {
+                navRight.classList.add('fixed');
+            } else {
+                navRight.classList.remove('fixed');
+            }
+        });
+
         const aboutBtn = document.getElementById('about-btn');
         const closeBtn = document.getElementById('close-btn');
         const aboutOverlay = document.getElementById('about-overlay');
@@ -665,7 +674,6 @@
         const translatableElements = document.querySelectorAll('[data-tr]');
 
         function applyLang() {
-            document.documentElement.lang = currentLang;
             if(langBtn) langBtn.textContent = currentLang === 'en' ? 'Türkçe' : 'English';
             translatableElements.forEach(el => {
                 el.innerHTML = el.getAttribute(`data-${currentLang}`);
@@ -678,25 +686,9 @@
                 e.preventDefault();
                 currentLang = currentLang === 'en' ? 'tr' : 'en';
                 localStorage.setItem('siteLang', currentLang);
-                document.documentElement.lang = currentLang;
                 applyLang();
             });
         }
-
-        // Keyboard support for lightbox
-        document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('active')) return;
-            if (e.key === 'Escape') {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = '';
-            } else if (e.key === 'ArrowLeft') {
-                currentImageIndex = (currentImageIndex - 1 + imageSources.length) % imageSources.length;
-                showLightboxImage();
-            } else if (e.key === 'ArrowRight') {
-                currentImageIndex = (currentImageIndex + 1) % imageSources.length;
-                showLightboxImage();
-            }
-        });
     </script>
 </body>
 </html>
