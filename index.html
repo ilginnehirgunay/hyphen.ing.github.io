@@ -1,621 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>-ING</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='white'/%3E%3Ctext x='50' y='75' font-family='Helvetica Neue, sans-serif' font-size='100' text-anchor='middle' fill='%231d1d1f'%3E( - )%3C/text%3E%3C/svg%3E">
-    <style>
-        :root {
-            --bg-color: #ffffff; 
-            --text-color: #1d1d1f; 
-            --font-main: 'Helvetica Neue', Helvetica, sans-serif;
-        }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: var(--font-main);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        a:hover {
-            opacity: 0.5;
-        }
-
-        header {
-            position: absolute;
-            top: 10px;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            pointer-events: none; 
-        }
-
-        .huge-ing {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            height: 240px; 
-            font-size: 240px; 
-            font-weight: 200; 
-            letter-spacing: -0.02em;
-            line-height: 1; 
-            margin: 0;
-            padding: 0 20px;
-            box-sizing: border-box;
-            color: var(--text-color); 
-        }
-
-        .huge-hyphen {
-            flex-grow: 1; 
-            height: max(4px, 0.04em); 
-            background-color: currentColor;
-            margin-right: 0.03em;
-            transform: translateY(-5%); 
-        }
-
-        .nav-right {
-            position: absolute;
-            top: 250px; 
-            left: 0;
-            width: 100%;
-            height: 48px;
-            padding: 0 20px;
-            box-sizing: border-box;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 20px;
-            font-size: 48px; 
-            font-weight: 350; 
-            letter-spacing: -0.02em; 
-            line-height: 1; 
-            z-index: 101;
-            pointer-events: auto;
-            mix-blend-mode: difference; 
-            color: #ffffff;
-        }
-
-        .nav-right.fixed {
-            position: fixed;
-            top: 10px;
-        }
-
-        .sticky-nav-ing {
-            position: fixed;
-            top: 10px; 
-            left: 20px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            font-size: 48px; 
-            font-weight: 350;
-            line-height: 1; 
-            letter-spacing: -0.02em;
-            margin: 0;
-            z-index: 101;
-            opacity: 0; 
-            pointer-events: none;
-            mix-blend-mode: difference;
-            color: #ffffff;
-        }
-
-        .sticky-nav-ing.visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        main {
-            padding: 320px 20px 0 20px; 
-            width: 100%; 
-            box-sizing: border-box;
-        }
-
-        .intro-text {
-            font-size: 48px; 
-            font-weight: 350;
-            line-height: 1; 
-            letter-spacing: -0.02em;
-            text-align: left;
-            margin-bottom: 80px;
-            margin-top: calc(100vh - 560px);
-        }
-
-        #intro-ing-word {
-            display: inline-block;
-        }
-
-        .filter-btn {
-            cursor: pointer;
-            text-decoration: underline;
-            transition: opacity 0.3s ease; 
-        }
-
-        .filter-btn:hover {
-            opacity: 0.5;
-        }
-
-        .filter-btn.active {
-            font-weight: bold;
-            font-style: italic;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px; 
-            margin-bottom: 120px; 
-        }
-
-        .project-card {
-            display: block;
-            transition: filter 0.4s ease;
-        }
-
-        .project-card img {
-            width: 100%;
-            aspect-ratio: 16/9; 
-            object-fit: cover;
-            display: block;
-            background-color: #f4f4f4;
-            transition: filter 0.4s ease;
-            clip-path: inset(0);
-        }
-
-        .project-title {
-            margin-top: 10px;
-            font-size: 16px; 
-        }
-
-        .scroll-footer {
-            padding-top: 58px; 
-            padding-left: 20px;
-            padding-right: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            height: calc(100vh - 250px); 
-            box-sizing: border-box;
-            pointer-events: none; 
-            z-index: 95;
-            position: relative;
-        }
-
-        .scroll-footer a {
-            font-size: 48px; 
-            font-weight: 350; 
-            letter-spacing: -0.02em;
-            line-height: 1;
-            margin: 0;
-            color: var(--text-color);
-            pointer-events: auto;
-        }
-
-        .bottom-nav-left {
-            height: 250px;
-            padding-bottom: 10px;
-            box-sizing: border-box;
-            position: relative;
-            width: 100%;
-            z-index: 90;
-            pointer-events: none;
-        }
-
-        #about-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: #000000;
-            color: var(--bg-color);
-            z-index: 200;
-            padding: 120px 20px 40px 20px;
-            box-sizing: border-box;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            gap: 80px;
-            overflow-y: auto;
-        }
-
-        #about-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        #about-overlay a {
-            color: var(--bg-color);
-        }
-
-        .overlay-nav-ing {
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            font-size: 48px; 
-            font-weight: 350;
-            line-height: 1;
-            letter-spacing: -0.02em;
-            margin: 0;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            font-size: 48px; 
-            font-weight: 350;
-            line-height: 1;
-            letter-spacing: -0.02em;
-            margin: 0;
-        }
-
-        .definition-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            font-size: 48px; 
-            font-weight: 350;
-            line-height: 1;
-            letter-spacing: -0.02em;
-        }
-
-        .word-title {
-            display: block;
-            margin-bottom: 15px;
-            opacity: 0.5;
-            font-size: 48px; 
-            font-weight: 350;
-            line-height: 1;
-            letter-spacing: -0.02em;
-            font-style: normal; 
-        }
-
-        #about-overlay .word-title {
-            font-style: italic;
-        }
-
-        .girlfriend-thanks {
-            text-align: center;
-            opacity: 0.5;
-            font-size: 16px;
-            font-weight: 350;
-            letter-spacing: -0.01em;
-            margin-top: auto;
-            padding-bottom: 20px;
-        }
-
-        @media (max-width: 1024px) {
-            .huge-ing {
-                height: 180px;
-                font-size: 180px;
-            }
-            .nav-right {
-                top: 190px;
-                height: 36px;
-                font-size: 36px;
-            }
-            .sticky-nav-ing {
-                height: 36px;
-                font-size: 36px;
-                top: 10px;
-            }
-            main {
-                padding: 240px 20px 0 20px;
-            }
-            .intro-text {
-                font-size: 36px;
-                margin-top: calc(100vh - 420px);
-            }
-            .scroll-footer {
-                padding-top: 46px; 
-                height: calc(100vh - 190px);
-            }
-            .scroll-footer a {
-                font-size: 36px;
-            }
-            .bottom-nav-left {
-                height: 190px;
-            }
-            .overlay-nav-ing {
-                height: 36px;
-                font-size: 36px;
-                top: 10px;
-            }
-            .close-btn {
-                height: 36px;
-                font-size: 36px;
-                top: 10px;
-            }
-            .definition-grid {
-                font-size: 36px;
-                gap: 30px;
-            }
-            .word-title {
-                font-size: 36px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .huge-ing {
-                height: 120px;
-                font-size: 120px;
-                padding: 0 15px;
-            }
-            .nav-right {
-                top: 130px;
-                height: 24px;
-                font-size: 24px;
-                padding: 0 15px;
-                gap: 15px;
-            }
-            .sticky-nav-ing {
-                top: 10px;
-                left: 15px;
-                height: 24px;
-                font-size: 24px;
-            }
-            main {
-                padding: 180px 15px 0 15px; 
-            }
-            .intro-text {
-                font-size: 24px;
-                margin-top: 120px; 
-            }
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
-            .scroll-footer {
-                padding-top: 34px;
-                padding-left: 15px;
-                padding-right: 15px;
-                height: calc(100vh - 130px);
-            }
-            .scroll-footer a {
-                font-size: 24px;
-            }
-            .bottom-nav-left {
-                height: 130px;
-                padding-bottom: 15px;
-            }
-            #about-overlay {
-                padding: 80px 15px 20px 15px;
-                gap: 40px;
-            }
-            .overlay-nav-ing {
-                top: 10px;
-                left: 15px;
-                height: 24px;
-                font-size: 24px;
-            }
-            .close-btn {
-                top: 10px;
-                right: 15px;
-                height: 24px;
-                font-size: 24px;
-            }
-            .definition-grid {
-                grid-template-columns: 1fr;
-                font-size: 24px;
-                gap: 20px;
-            }
-            .word-title {
-                font-size: 24px;
-                margin-bottom: 5px;
-            }
-            .girlfriend-thanks {
-                font-size: 14px;
-                padding-bottom: 15px;
-            }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Ilgın Nehir Günay</title>
+<style>
+:root{--bg:#fff;--fg:#000;--mute:#9a9a9a;--ph:#f1f1f1;--ease:cubic-bezier(.65,0,.25,1);box-sizing:border-box}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;overflow:hidden;background:var(--bg)}
+body{color:var(--fg);font:400 clamp(12.75px,1.125vw,17.25px)/1.28 "Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left}
+img{display:block;-webkit-user-drag:none;user-select:none}
+:focus-visible{outline:2px solid var(--fg);outline-offset:4px}
+@media (pointer:fine){body,a,button{cursor:none}}
+#cur{position:fixed;left:0;top:0;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;background:rgba(130,130,130,.75);pointer-events:none;z-index:99;opacity:0;transition:opacity .3s}
+.layer{position:fixed;inset:0;opacity:0;pointer-events:none;transition:opacity .5s var(--ease)}
+.layer.on{opacity:1;pointer-events:auto}
+header{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;gap:2rem;padding:clamp(30px,7vh,82px) 6vw 0 calc(6vw + clamp(0px,4.5vw,75px));z-index:3;pointer-events:none;transition:opacity .5s var(--ease)}
+header>*{pointer-events:auto}
+h1{margin:0;font-weight:400;font-size:clamp(22.5px,3.15vw,45px);line-height:1.12;letter-spacing:-.015em}
+#year{display:block;transition:opacity .25s}
+nav{display:flex;flex-direction:column;align-items:flex-start;color:var(--mute);min-width:6.5em}
+nav a,nav button{display:block}
+nav a:hover,nav button:hover,.links a:hover{color:var(--fg)}
+#strip{position:absolute;inset:0;display:flex;align-items:center;gap:clamp(30px,5.25vw,90px);overflow-x:auto;overflow-y:hidden;padding:14vh calc(6vw + clamp(0px,4.5vw,75px)) 0;scrollbar-width:none;transition:opacity .5s var(--ease),filter .6s var(--ease)}
+#strip::-webkit-scrollbar{display:none}
+.item{flex:none;transition:transform .7s var(--ease)}
+.item img{background:var(--ph)}
+#home.away header,#home.away #strip{opacity:0;pointer-events:none}
+#home.away .item{transform:translateX(12vw)}
+#home.blur header{opacity:0;pointer-events:none}
+#home.blur #strip{filter:blur(22px);opacity:.55;pointer-events:none}
+#back{position:fixed;top:calc(env(safe-area-inset-top,0px) + 22px);left:3.5vw;width:32px;height:44px;display:grid;place-items:center;z-index:5;opacity:0;pointer-events:none;color:var(--mute);transition:opacity .4s,color .2s}
+#back:hover{color:var(--fg)}
+#back.on{opacity:1;pointer-events:auto}
+#project .info{position:absolute;left:8vw;top:50%;transform:translateY(-50%);width:17vw;min-width:170px;max-height:92vh;overflow:auto;scrollbar-width:none;opacity:0;transition:opacity .4s}
+#project.on .info{opacity:1;transition-delay:.35s}
+.info h2{margin:0;font-size:1em;font-weight:700}
+.info p{margin:0}
+.info .year{margin-top:.55em}
+.play{margin:clamp(18px,4vh,38px) 0;width:42px;height:42px;border:1.5px solid var(--fg);border-radius:50%;display:grid;place-items:center}
+.play:hover{opacity:.55}
+.credits{color:var(--mute)}
+.fly{position:fixed;z-index:4;transform-origin:0 0;transition:transform .8s var(--ease),filter .6s var(--ease),opacity .6s var(--ease);will-change:transform}
+.fly.blur{filter:blur(24px);opacity:0}
+#viewer.on{transition-delay:.15s}
+#vstrip{position:absolute;inset:0;display:flex;align-items:center;gap:4vw;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 6vw 0 clamp(70px,7.5vw,120px);scrollbar-width:none}
+#vstrip::-webkit-scrollbar{display:none}
+.card{flex:none;scroll-snap-align:start;scroll-margin-left:clamp(70px,7.5vw,120px)}
+.card .cap{font-size:.62em;line-height:1.3;margin-bottom:.9rem}
+.card .cap b{display:block;font-weight:700}
+.card img{max-height:52vh;max-width:min(60vw,calc(100vw - clamp(70px,7.5vw,120px) - 6vw));width:auto;height:auto;background:var(--ph)}
+#dots{position:absolute;left:50%;bottom:4.5vh;display:flex;gap:7px;transform:translateX(-50%)}
+#dots i{width:5px;height:5px;border-radius:50%;background:#d0d0d0;transition:background .3s}
+#dots i.on{background:#555}
+#about-view .in{position:absolute;left:8vw;top:50%;transform:translateY(-50%);display:flex;gap:4vw;align-items:flex-start;width:min(84vw,1000px)}
+#about-view .txt{width:min(30vw,380px);line-height:1.3}
+#about-view .links{color:var(--mute);margin-top:1.6em;display:flex;flex-direction:column;align-items:flex-start}
+#about-view .photo{width:min(30vw,400px);aspect-ratio:3/2;background:var(--ph);color:#b5b5b5;display:grid;place-items:center;font-size:.8em;margin-top:.2em}
+@media (max-width:800px){
+ #back{left:2.5vw;top:calc(env(safe-area-inset-top,0px) + 14px)}
+ header{flex-direction:column;justify-content:flex-start;gap:.7rem;padding:calc(7vh) 6vw 0 6vw}
+ nav{min-width:0}
+ #strip{padding:20vh 6vw 0 6vw;gap:5vw}
+ #project .info{top:auto;transform:none;left:6vw;width:88vw;max-height:none;display:grid;grid-template-columns:1fr 1fr;gap:4vw;align-items:start}
+ #viewer #vstrip{padding-left:6vw}
+ .card{scroll-margin-left:6vw}
+ .card img{max-width:70vw;max-height:40vh}
+ #about-view .in{flex-direction:column-reverse;left:6vw;top:11vh;transform:none;width:88vw;gap:1.4rem}
+ #about-view .txt{width:100%}
+ #about-view .photo{width:56vw}
+}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01s!important}}
+</style>
 </head>
 <body>
+<div id="cur"></div>
+<button id="back" aria-label="Back"><svg width="17" height="36" viewBox="0 0 22 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2 4 24l14 22"/></svg></button>
 
-    <header>
-        <div class="huge-ing">
-            <div class="huge-hyphen"></div>
-            <div class="huge-text">ING</div>
-        </div>
-    </header>
+<section id="home" class="layer on" aria-label="Projects">
+  <header>
+    <h1>Ilgın Nehir Günay<span id="year"></span></h1>
+    <nav aria-label="Links">
+      <button id="about">About</button>
+      <a href="https://www.instagram.com/ilginnehirgunay/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.linkedin.com/in/ilginnehirgunay/" target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+  </header>
+  <div id="strip"></div>
+</section>
 
-    <div class="nav-right" id="nav-right">
-        <a id="about-btn" data-en="About" data-tr="Hakkında">About</a>
-        <a id="lang-btn">Türkçe</a>
-    </div>
+<section id="project" class="layer" aria-live="polite">
+  <div class="info" id="info">
+    <div class="meta"><h2 id="d-title"></h2><p id="d-role"></p><p id="d-ctx"></p><p id="d-loc"></p><p class="year" id="d-year"></p>
+    <button class="play" id="play" aria-label="Open gallery"><svg width="14" height="14" viewBox="0 0 18 18"><path d="M4 2l12 7-12 7z" fill="currentColor"/></svg></button></div>
+    <div class="credits" id="d-credits"></div>
+  </div>
+</section>
 
-    <div id="sticky-nav-ing" class="sticky-nav-ing">-ING</div>
+<section id="viewer" class="layer" aria-label="Gallery"><div id="vstrip"></div><div id="dots"></div></section>
 
-    <main>
-        <div class="intro-text">
-            <span id="intro-ing-word">-ING</span>, <i>Ilgın Nehir Günay</i>, <span data-en="is a multidisciplinary designer. <span class='filter-btn' data-filter='architecture'>Architecture</span>, <span class='filter-btn' data-filter='engineering'>engineering</span>, <span class='filter-btn' data-filter='fashion-design'>fashion design</span>, <span class='filter-btn' data-filter='graphic-design'>graphic design</span>, and <span class='filter-btn' data-filter='industrial-design'>industrial design</span> are his work fields." data-tr="çok disiplinli bir tasarımcıdır. <span class='filter-btn' data-filter='architecture'>Mimarlık</span>, <span class='filter-btn' data-filter='engineering'>mühendislik</span>, <span class='filter-btn' data-filter='fashion-design'>moda tasarım</span>, <span class='filter-btn' data-filter='graphic-design'>grafik tasarım</span> ve <span class='filter-btn' data-filter='industrial-design'>endüstriyel tasarım</span> çalışma alanlarıdır.">is a multidisciplinary designer. <span class='filter-btn' data-filter='architecture'>Architecture</span>, <span class='filter-btn' data-filter='engineering'>engineering</span>, <span class='filter-btn' data-filter='fashion-design'>fashion design</span>, <span class='filter-btn' data-filter='graphic-design'>graphic design</span>, and <span class='filter-btn' data-filter='industrial-design'>industrial design</span> are his work fields.</span>
-        </div>
-
-        <div class="project-grid">
-            <a href="ohmsole-store" class="project-card" data-categories="architecture engineering industrial-design">
-                <img src="/images/ohmsole-store/ohmsole-general-orthographic-render.webp" alt="OhmSole Store">
-                <div class="project-title">OhmSole Store</div>
-            </a>
-            <a href="les-benjamins-research" class="project-card" data-categories="engineering fashion-design graphic-design industrial-design">
-                <img src="/images/lb-research/lb-research-bench-side.webp" alt="Les Benjamins reSEARCH">
-                <div class="project-title">Les Benjamins reSEARCH</div>
-            </a>
-            <a href="xiaomi-mi-stores" class="project-card" data-categories="architecture engineering industrial-design">
-                <img src="/images/xiaomi-mi-stores/mi-stores-general.webp" alt="Xiaomi Mi Stores">
-                <div class="project-title">Xiaomi Mi Stores</div>
-            </a>
-        </div>
-    </main>
-
-    <div class="scroll-footer">
+<section id="about-view" class="layer" aria-label="About">
+  <div class="in">
+    <div class="txt">
+      <p>Ilgın Nehir Günay is an architect and multidisciplinary designer. His background spans the full spectrum of the built environment, from managing large-scale industrial site construction and historic restorations to leading his independent practice. Working as lead designer for both architectural projects and industrial design ventures, his work is defined by a commitment to structural honesty and utilitarian logic, ensuring every design serves a clear, functional purpose.</p>
+      <div class="links">
         <a href="mailto:contact@hyphen.ing">Email</a>
-        <a href="https://www.instagram.com/ilginnehirgunay" target="_blank">Instagram</a>
-        <a href="https://x.com/ilginnehirgunay" target="_blank">Twitter</a>
+        <a href="https://www.instagram.com/ilginnehirgunay/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.linkedin.com/in/ilginnehirgunay/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
     </div>
+    <div class="photo">Portrait</div>
+  </div>
+</section>
 
-    <div class="bottom-nav-left">
-        <div class="huge-ing">
-            <div class="huge-hyphen"></div>
-            <div class="huge-text">ING</div>
-        </div>
-    </div>
 
-    <div id="about-overlay">
-        <div class="overlay-nav-ing">-ING</div>
-        <a class="close-btn" id="close-btn" data-en="Close" data-tr="Kapat">Close</a>
-        
-        <div class="definition-grid page-definition">
-            <div>
-                <span class="word-title" data-en="hyphen (noun)" data-tr="tire (isim)">hyphen (noun)</span>
-                <span data-en="The mark ( - ) used to join two things together to make a new one." data-tr="İki şeyi birleştirip yeni bir şey oluşturmak için kullanılan işaret ( - ).">The mark ( - ) used to join two things together to make a new one.</span>
-            </div>
-            <div>
-                <span class="word-title" data-en="-ing (suffix)" data-tr="-ing (İngilizce'de sonek)">-ing (suffix)</span>
-                <span data-en="Referring to an action, process, or material." data-tr="Bir eylemi, süreci veya materyali ifade eder.">Referring to an action, process, or material.</span>
-            </div>
-        </div>
+<script>
+const LB="Les Benjamins reSEARCH",LBC=["Bünyamin Aydın","Gökçe Gürpınar","Eren Yıldırım","Tulça Sezer","Cem Uyal","Yağmur Genç","Yiğitcan Genç","Ilgın Nehir Günay"];
+const d=(dir,names)=>names.split(" ").map(n=>"images/"+dir+"/"+n+".webp");
+/* Newest first (left) to oldest (right). cover = [width,height] of first image. */
+const PROJECTS=[
+ {title:"Fashion & Sneaker Store",role:"Project Architect and Site Manager",ctx:"OhmSole",year:"2025",cover:[1920,1080],credits:["Ayla Zhao","Mert Türkeli","Ilgın Nehir Günay"],
+  media:d("ohmsole-store","ohmsole-general-orthographic-render ohmsole-ground-floor-plan-drawing ohmsole-entrance-installation-diagram ohmsole-general-view ohmsole-aa-section-drawing ohmsole-electrical-installation-detail ohmsole-stainless-steel-stools ohmsole-rearside-installation-diagram ohmsole-rearside ohmsole-bb-section-drawing ohmsole-shoeshelf-lighting-demo ohmsole-front-close-up ohmsole-checkout-counter-close-up ohmsole-frontside")},
+ {title:"Hotpot Restaurant",role:"Project Architect and Site Manager",ctx:"Later Hotpot",year:"2024",cover:[1920,1080],credits:["Ayla Zhao","Daniyaer Haimiti","Ilgın Nehir Günay"],
+  media:d("later-hotpot-restaurant","later-entrance")},
+ {title:"Rocking Chair and Coffee Table",role:"Project Director and Lead Designer",ctx:LB,year:"2024",cover:[1920,1080],credits:LBC,
+  media:d("lb-research","lb-research-wooden-prototypes lb-research-bench-inner-parts lb-research-wooden-rocking-chair")},
+ {title:"Crew Merch",role:"Designer",ctx:LB,year:"2023",cover:[1080,1080],credits:LBC,
+  media:d("lb-research","lb-research-long-sleeve-tee-back-close-up lb-research-long-sleeve-tee-front lb-research-long-sleeve-tee-back lb-research-long-sleeve-tee-logo-set")},
+ {title:"Mechanical Bench",role:"Project Director and Lead Designer",ctx:LB,year:"2022 — 2024",cover:[3840,1080],credits:LBC,
+  media:d("lb-research","lb-research-bench lb-research-bench-inside-close-up lb-research-bench-installation-demo lb-research-bench-motion-demo lb-research-bench-sketches lb-research-bench-render lb-research-wooden-bench-prototype lb-research-bench-installation lb-research-bench-side lb-research-bench-slices-installation lb-research-bench-padlock-installation")},
+ {title:"Xiaomi Mi Stores",role:"Project Architect and Site Manager",ctx:"Baran Construction",loc:"Antalya, Ankara and Istanbul, Türkiye",year:"2022 — 2023",cover:[3840,1080],credits:[],
+  media:d("xiaomi-mi-stores","mi-stores-hero mi-stores-details01 mi-stores-details02 mi-stores-details03 mi-stores-demolition mi-stores-steel-box-sections mi-stores-gypsum-boarding mi-stores-plaster-job mi-stores-fixture-installation01 mi-stores-plaster-job02 mi-stores-fixture-installation02 mi-stores-fixture-installation03")}
+];
+const src=p=>(window.EMBED&&EMBED[p])||p;
+const $=id=>document.getElementById(id);
+const strip=$("strip"),home=$("home");
+let state="home",cur=null,curEl=null,fly=null,curIdx=0;
 
-        <div class="definition-grid" style="grid-template-columns: 1fr;">
-            <div>
-                <div data-en="Ilgın Nehir Günay’s background includes large-scale industrial construction site management, facade restorations, and small-to-medium-scale retail construction site projects. In addition, continuing their career through an independent design and architecture practice, Nehir holds various roles—such as Project Director, Architectural Project Manager, Lead Designer, and Project Architect—across both architectural projects and industrial design ventures. While defining projects through a commitment to the principles of structural integrity and utilitarian logic, Nehir ensures that every design serves a clear and functional purpose aligned with client requirements." data-tr="Ilgın Nehir Günay’ın geçmişinde, büyük ölçekli endüstriyel şantiye yönetimi, cephe restorasyonları ve orta/küçük ölçekli perakende şantiye projeleri bulunur. Bunlara ek, bağımsız olarak tasarım ve mimarlık pratiği ile kariyerine devam eden Nehir, hem mimari projelerde hem de endüstriyel tasarım girişimlerinde Proje Direktörü, Mimari Proje Yöneticisi, Baş Tasarımcı ve Proje Mimarı gibi çeşitli görevlerde bulunur. Projeleri, yapısal dürüstlük ve faydacı mantık ilkelerine olan bağlılığıyla tanımlarken; her tasarımın müşteri gereksinimleriyle birleşen net ve işlevsel bir amaca hizmet etmesini sağlar.">
-                    Ilgın Nehir Günay’s background includes large-scale industrial construction site management, facade restorations, and small-to-medium-scale retail construction site projects. In addition, continuing their career through an independent design and architecture practice, Nehir holds various roles—such as Project Director, Architectural Project Manager, Lead Designer, and Project Architect—across both architectural projects and industrial design ventures. While defining projects through a commitment to the principles of structural integrity and utilitarian logic, Nehir ensures that every design serves a clear and functional purpose aligned with client requirements.
-                </div>
-            </div>
-        </div>
+const dot=$("cur");let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my;
+if(matchMedia("(pointer:fine)").matches){
+  addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;dot.style.opacity=1});
+  document.addEventListener("mouseleave",()=>dot.style.opacity=0);
+  (function loop(){cx+=(mx-cx)*.22;cy+=(my-cy)*.22;dot.style.transform="translate("+cx+"px,"+cy+"px)";requestAnimationFrame(loop)})();
+}
+const fit=(w,h,bw,bh)=>{const s=Math.min(bw/w,bh/h);return{w:w*s,h:h*s}};
+const K=.75,M=()=>innerWidth<=800;
+function homeSize(p){return M()?fit(p.cover[0],p.cover[1],innerWidth*.62*K,innerHeight*.2*K):fit(p.cover[0],p.cover[1],innerWidth*.62*K,innerHeight*.56*K)}
+function targetRect(p){
+  const W=innerWidth,H=innerHeight;
+  if(M()){const s=fit(p.cover[0],p.cover[1],W*.88*K,H*.34*K);return{x:W*.06,y:H*.11,w:s.w,h:s.h}}
+  const s=fit(p.cover[0],p.cover[1],W*.62*K,H*.76*K);return{x:W*.32,y:(H-s.h)/2,w:s.w,h:s.h};
+}
+function sizeItems(){[...strip.children].forEach((el,i)=>{const s=homeSize(PROJECTS[i]),im=el.firstChild;im.style.width=s.w+"px";im.style.height=s.h+"px"})}
+PROJECTS.forEach((p,i)=>{
+  const b=document.createElement("button");
+  b.className="item";b.setAttribute("aria-label",p.title+", "+p.year);
+  const im=new Image();im.alt=p.title;im.src=src(p.media[0]);b.appendChild(im);
+  b.onclick=()=>openProject(i,b);strip.appendChild(b);
+});
+sizeItems();addEventListener("resize",sizeItems);
 
-        <div class="girlfriend-thanks">
-            Special thanks to Pelin ♥
-        </div>
-    </div>
+let shown="";
+function setYear(y){if(y===shown)return;shown=y;const e=$("year");e.style.opacity=0;setTimeout(()=>{e.textContent=y;e.style.opacity=1},150)}
+function updateYear(){let best=0,bd=1e9;[...strip.children].forEach((el,i)=>{const r=el.getBoundingClientRect(),dd=Math.abs(r.left+r.width/2-innerWidth*.5);if(dd<bd){bd=dd;best=i}});setYear(PROJECTS[best].year)}
+strip.addEventListener("scroll",updateYear,{passive:true});
+$("year").textContent=shown=PROJECTS[0].year;
 
-    <script>
-        const aboutBtn = document.getElementById('about-btn');
-        const closeBtn = document.getElementById('close-btn');
-        const aboutOverlay = document.getElementById('about-overlay');
+function layersOn(on){["home","project","viewer","about-view"].forEach(l=>$(l).classList.toggle("on",on.includes(l)))}
+const rectOf=el=>{const r=el.getBoundingClientRect();return{x:r.left,y:r.top,w:r.width,h:r.height}};
+function place(el,f,t){el.style.transform="translate("+(t.x-f.x)+"px,"+(t.y-f.y)+"px) scale("+t.w/f.w+","+t.h/f.h+")"}
+function row(id,v){const e=$(id);e.textContent=v||"";e.style.display=v?"":"none"}
 
-        aboutBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            aboutOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; 
-        });
+function openProject(i,el){
+  state="project";cur=PROJECTS[i];curEl=el;
+  row("d-title",cur.title);row("d-role",cur.role);row("d-ctx",cur.ctx);row("d-loc",cur.loc);row("d-year",cur.year);
+  $("d-credits").innerHTML=cur.credits.map(c=>"<div>"+c+"</div>").join("");
+  const f=rectOf(el.firstChild);
+  fly=new Image();fly.src=src(cur.media[0]);fly.className="fly";fly.alt="";
+  Object.assign(fly.style,{left:f.x+"px",top:f.y+"px",width:f.w+"px",height:f.h+"px"});
+  document.body.appendChild(fly);el.style.visibility="hidden";
+  home.classList.add("away");layersOn(["project"]);$("back").classList.add("on");
+  const tr=targetRect(cur);$("info").style.top=M()?(tr.y+tr.h+innerHeight*.04)+"px":"";
+  fly.getBoundingClientRect();place(fly,f,tr);
+}
+function closeProject(){
+  state="home";const t=rectOf(curEl.firstChild);
+  fly.style.transform="translate("+(t.x-parseFloat(fly.style.left))+"px,"+(t.y-parseFloat(fly.style.top))+"px) scale(1,1)";
+  home.classList.remove("away");layersOn(["home"]);$("back").classList.remove("on");
+  const el=curEl,fl=fly;setTimeout(()=>{el.style.visibility="";fl.remove()},820);fly=null;
+}
+function openViewer(){
+  state="viewer";const v=$("vstrip");
+  v.innerHTML=cur.media.map((m,i)=>'<div class="card"><div class="cap"><b>'+cur.title+'</b>'+cur.ctx+' '+cur.year+'</div><img src="'+src(m)+'" alt="'+cur.title+' '+(i+1)+'"'+(i>1?' loading="lazy"':'')+'></div>').join("");
+  v.scrollLeft=0;
+  $("dots").innerHTML=cur.media.map((_,i)=>'<i class="'+(i?"":"on")+'"></i>').join("");
+  fly.classList.add("blur");layersOn(["viewer"]);
+}
+function closeViewer(){state="project";fly.classList.remove("blur");layersOn(["project"])}
+$("vstrip").addEventListener("scroll",()=>{
+  const cs=[...$("vstrip").children];let b=0,bd=1e9;
+  cs.forEach((c,i)=>{const dd=Math.abs(c.getBoundingClientRect().left-parseFloat(getComputedStyle(c).scrollMarginLeft));if(dd<bd){bd=dd;b=i}});
+  [...$("dots").children].forEach((x,i)=>x.classList.toggle("on",i===b));
+},{passive:true});
 
-        closeBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            aboutOverlay.classList.remove('active');
-            document.body.style.overflow = ''; 
-        });
-
-        const introTextSpan = document.querySelector('.intro-text');
-        const stickyNavIng = document.getElementById('sticky-nav-ing');
-        const originalIng = document.getElementById('intro-ing-word');
-        const navRight = document.getElementById('nav-right');
-
-        window.addEventListener('scroll', () => {
-            const rect = introTextSpan.getBoundingClientRect();
-            const topOffset = window.innerWidth <= 768 ? 10 : 10; 
-            
-            if (rect.top <= topOffset) {
-                stickyNavIng.classList.add('visible');
-                originalIng.style.opacity = '0';
-            } else {
-                stickyNavIng.classList.remove('visible');
-                originalIng.style.opacity = '1';
-            }
-
-            const stickyPoint = window.innerWidth <= 768 ? 120 : (window.innerWidth <= 1024 ? 180 : 240);
-            if (window.scrollY >= stickyPoint) {
-                navRight.classList.add('fixed');
-            } else {
-                navRight.classList.remove('fixed');
-            }
-        });
-
-        let activeFilter = null;
-
-        if (introTextSpan) {
-            introTextSpan.addEventListener('click', (e) => {
-                const btn = e.target.closest('.filter-btn');
-                if(btn) {
-                    const filter = btn.getAttribute('data-filter');
-                    if (activeFilter === filter) {
-                        activeFilter = null;
-                    } else {
-                        activeFilter = filter;
-                    }
-                    applyFilter();
-                }
-            });
-        }
-
-        function applyFilter() {
-            document.querySelectorAll('.filter-btn').forEach(b => {
-                if (b.getAttribute('data-filter') === activeFilter) {
-                    b.classList.add('active');
-                } else {
-                    b.classList.remove('active');
-                }
-            });
-
-            document.querySelectorAll('.project-card').forEach(card => {
-                const img = card.querySelector('img');
-                if (!activeFilter) {
-                    img.style.filter = '';
-                    card.style.pointerEvents = 'auto';
-                } else {
-                    const cats = card.getAttribute('data-categories');
-                    if(cats && cats.includes(activeFilter)) {
-                        img.style.filter = '';
-                        card.style.pointerEvents = 'auto';
-                    } else {
-                        img.style.filter = 'blur(12px)';
-                        card.style.pointerEvents = 'none';
-                    }
-                }
-            });
-        }
-
-        let currentLang = localStorage.getItem('siteLang') || 'en';
-        const langBtn = document.getElementById('lang-btn');
-        const translatableElements = document.querySelectorAll('[data-tr]');
-
-        function applyLang() {
-            if(langBtn) langBtn.textContent = currentLang === 'en' ? 'Türkçe' : 'English';
-            translatableElements.forEach(el => {
-                el.innerHTML = el.getAttribute(`data-${currentLang}`);
-            });
-            if(typeof applyFilter === 'function') applyFilter();
-        }
-
-        if(langBtn) {
-            applyLang();
-            langBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                currentLang = currentLang === 'en' ? 'tr' : 'en';
-                localStorage.setItem('siteLang', currentLang);
-                applyLang();
-            });
-        }
-    </script>
+$("play").onclick=openViewer;
+$("about").onclick=()=>{state="about";home.classList.add("blur");layersOn(["home","about-view"]);$("back").classList.add("on")};
+$("back").onclick=()=>{
+  if(state==="viewer")closeViewer();
+  else if(state==="project")closeProject();
+  else if(state==="about"){state="home";home.classList.remove("blur");layersOn(["home"]);$("back").classList.remove("on")}
+};
+addEventListener("keydown",e=>{if(e.key==="Escape")$("back").click()});
+document.addEventListener("click",e=>{if(state!=="home"&&!e.target.closest("button,a"))$("back").click()});
+[strip,$("vstrip")].forEach(s=>s.addEventListener("wheel",e=>{if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){s.scrollLeft+=e.deltaY;e.preventDefault()}},{passive:false}));
+</script>
 </body>
 </html>
