@@ -2,117 +2,125 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="color-scheme" content="light">
 <title>Ilgın Nehir Günay</title>
+<meta name="description" content="Ilgın Nehir Günay is an architect and multidisciplinary designer.">
 <style>
-:root{--bg:#fff;--fg:#000;--mute:#9a9a9a;--ph:#f1f1f1;--ease:cubic-bezier(.65,0,.25,1);box-sizing:border-box}
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;overflow:hidden;background:var(--bg)}
-body{color:var(--fg);font:400 clamp(12.75px,1.125vw,17.25px)/1.28 "Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--mute:rgba(0,0,0,.4);--ease:cubic-bezier(.32,.72,0,1);box-sizing:border-box}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0;overflow:hidden;background:#fff}
+body{font:400 clamp(11px,1.165vw,24px)/1.15 "Helvetica Neue",Helvetica,Arial,sans-serif;color:#000;-webkit-font-smoothing:antialiased;opacity:0;transition:opacity .9s ease;overscroll-behavior:none;touch-action:none;user-select:none;-webkit-user-select:none}
+body.ready{opacity:1}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left}
 img{display:block;-webkit-user-drag:none;user-select:none}
-:focus-visible{outline:2px solid var(--fg);outline-offset:4px}
-@media (pointer:fine){body,a,button{cursor:none}}
-#cur{position:fixed;left:0;top:0;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;background:rgba(130,130,130,.75);pointer-events:none;z-index:99;opacity:0;transition:opacity .3s}
+:focus-visible{outline:1px solid #000;outline-offset:4px}
 .layer{position:fixed;inset:0;opacity:0;pointer-events:none;transition:opacity .5s var(--ease)}
 .layer.on{opacity:1;pointer-events:auto}
-header{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;gap:2rem;padding:clamp(30px,7vh,82px) 6vw 0 calc(6vw + clamp(0px,4.5vw,75px));z-index:3;pointer-events:none;transition:opacity .5s var(--ease)}
-header>*{pointer-events:auto}
-h1{margin:0;font-weight:400;font-size:clamp(22.5px,3.15vw,45px);line-height:1.12;letter-spacing:-.015em}
-#year{display:block;transition:opacity .25s}
-nav{display:flex;flex-direction:column;align-items:flex-start;color:var(--mute);min-width:6.5em}
-nav a,nav button{display:block}
-nav a:hover,nav button:hover,.links a:hover{color:var(--fg)}
-#strip{position:absolute;inset:0;display:flex;align-items:center;gap:clamp(30px,5.25vw,90px);overflow-x:auto;overflow-y:hidden;padding:14vh calc(6vw + clamp(0px,4.5vw,75px)) 0;scrollbar-width:none;transition:opacity .5s var(--ease),filter .6s var(--ease)}
-#strip::-webkit-scrollbar{display:none}
-.item{flex:none;transition:transform .7s var(--ease)}
-.item img{background:var(--ph)}
-#home.away header,#home.away #strip{opacity:0;pointer-events:none}
-#home.away .item{transform:translateX(12vw)}
-#home.blur header{opacity:0;pointer-events:none}
-#home.blur #strip{filter:blur(22px);opacity:.55;pointer-events:none}
-#back{position:fixed;top:calc(env(safe-area-inset-top,0px) + 22px);left:3.5vw;width:32px;height:44px;display:grid;place-items:center;z-index:5;opacity:0;pointer-events:none;color:var(--mute);transition:opacity .4s,color .2s}
-#back:hover{color:var(--fg)}
-#back.on{opacity:1;pointer-events:auto}
-#project .info{position:absolute;left:8vw;top:50%;transform:translateY(-50%);width:17vw;min-width:170px;max-height:92vh;overflow:auto;scrollbar-width:none;opacity:0;transition:opacity .4s}
-#project.on .info{opacity:1;transition-delay:.35s}
-.info h2{margin:0;font-size:1em;font-weight:700}
-.info p{margin:0}
-.info .year{margin-top:.55em}
-.play{margin:clamp(18px,4vh,38px) 0;width:42px;height:42px;border:1.5px solid var(--fg);border-radius:50%;display:grid;place-items:center}
-.play:hover{opacity:.55}
-.credits{color:var(--mute)}
-.fly{position:fixed;z-index:4;transform-origin:0 0;transition:transform .8s var(--ease),filter .6s var(--ease),opacity .6s var(--ease);will-change:transform}
-.fly.blur{filter:blur(24px);opacity:0}
-#viewer.on{transition-delay:.15s}
-#vstrip{position:absolute;inset:0;display:flex;align-items:center;gap:4vw;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 6vw 0 clamp(70px,7.5vw,120px);scrollbar-width:none}
-#vstrip::-webkit-scrollbar{display:none}
-.card{flex:none;scroll-snap-align:start;scroll-margin-left:clamp(70px,7.5vw,120px)}
-.card .cap{font-size:.62em;line-height:1.3;margin-bottom:.9rem}
-.card .cap b{display:block;font-weight:700}
-.card img{max-height:52vh;max-width:min(60vw,calc(100vw - clamp(70px,7.5vw,120px) - 6vw));width:auto;height:auto;background:var(--ph)}
-#dots{position:absolute;left:50%;bottom:4.5vh;display:flex;gap:7px;transform:translateX(-50%)}
-#dots i{width:5px;height:5px;border-radius:50%;background:#d0d0d0;transition:background .3s}
-#dots i.on{background:#555}
-#about-view .in{position:absolute;left:8vw;top:50%;transform:translateY(-50%);display:flex;gap:4vw;align-items:flex-start;width:min(84vw,1000px)}
-#about-view .txt{width:min(30vw,380px);line-height:1.3}
-#about-view .links{color:var(--mute);margin-top:1.6em;display:flex;flex-direction:column;align-items:flex-start}
-#about-view .photo{width:min(30vw,400px);aspect-ratio:3/2;background:var(--ph);color:#b5b5b5;display:grid;place-items:center;font-size:.8em;margin-top:.2em}
+.lnk{display:block;width:fit-content;color:var(--mute);font-size:calc(1em - 1pt);transition:color .25s}
+.lnk:hover{color:#000}
+/* header */
+#hdr{position:fixed;left:0;right:0;top:12.2vh;z-index:3;pointer-events:none;transition:opacity .5s var(--ease)}
+#hdr>*{pointer-events:auto}
+.t{position:absolute;left:22.1vw;top:0;font-size:2em;line-height:1.1;white-space:nowrap;font-weight:500}
+#year{display:block;height:1.1em}
+#year .c{display:inline-block;position:relative;overflow:hidden;vertical-align:top;height:1.1em}
+#year .o{position:absolute;left:0;top:0}
+#hdr nav{position:absolute;left:68.8vw;top:.15em}
+/* timeline */
+#tl{position:absolute;inset:0;display:flex;align-items:center;padding:22vh 22vw 0 22.1vw;overflow:hidden;transition:filter .7s var(--ease),opacity .7s var(--ease),transform .7s var(--ease);transform-origin:0 50%}
+#tl::-webkit-scrollbar{display:none}
+.item{flex:none;display:block}
+#home.abt #hdr{opacity:0;pointer-events:none}
+#home.abt #tl{filter:blur(18px);opacity:.45;transform:scale(.98);pointer-events:none}
+/* back */
+#back{position:fixed;left:2.6vw;top:calc(6.6vh - .65em);font-size:20px;width:1.6em;height:1.6em;display:grid;place-items:center;z-index:6;opacity:calc(var(--q,0)*.3);pointer-events:none;transition:opacity .25s}
+#back svg{height:1.3em;width:1.3em;fill:none;stroke:#000;stroke-width:4.4;stroke-miterlimit:10}
+#back:hover{opacity:var(--q,0)}
+/* gallery */
+#gal{transition:none}
+#gs{position:absolute;inset:0;overflow:hidden}
+#gt{display:flex;height:100%;will-change:transform}
+.page{flex:none;width:100vw;height:100%;position:relative}
+.grp{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:4em;transition:opacity .5s,filter .6s var(--ease)}
+.info{width:14em;flex:none;font-size:calc(1em - 1pt);opacity:var(--io,0)}
+.info h2{font:inherit;font-weight:700;margin:0}
+.sub span{display:block}.sub .dt{margin-top:.6em}
+.play{display:block;width:2em;height:2em;margin-top:1.8em}
+.play svg{width:100%;height:100%;display:block}
+.play circle{fill:none;stroke:#000;stroke-width:2.4;transition:opacity .25s}
+.play:hover circle{opacity:.45}
+.team{color:var(--mute);margin-top:4em}.team span{display:block}
+.gimg{flex:none}
+#gal.playing .grp{opacity:0;filter:blur(20px);pointer-events:none}
+.fly{position:fixed;z-index:4;transform-origin:0 0;transition:transform .85s var(--ease),filter .6s var(--ease),opacity .6s;will-change:transform}
+.fly.blur{filter:blur(20px);opacity:0}
+/* viewer */
+#vs{position:absolute;inset:0;overflow:hidden}
+#vt{display:flex;align-items:center;gap:3vw;height:100%;width:max-content;padding:0 8vw 0 17.5vw;will-change:transform}
+.card{flex:none}
+.card .cap{font-size:.9em;line-height:1.25;margin-bottom:.9em}.card .cap b{display:block;font-weight:700}
+.card img{max-height:66vh;max-width:65vw;width:auto;height:auto;background:#f4f4f4}
+#dots{position:absolute;left:50%;bottom:5vh;display:flex;gap:.55em;transform:translateX(-50%)}
+#dots i{width:.4em;height:.4em;border-radius:50%;background:#d6d6d6;transition:background .3s}#dots i.on{background:#555}
+/* about */
+#abg{background:rgba(255,255,255,.55)}
+.abt{position:absolute;left:22.1vw;top:50%;width:56vw;display:flex;gap:3vw;align-items:flex-start;transform:translateY(-50%)}
+.abt .tx,.abt .ph{opacity:0;filter:blur(3px);transform:scale(1.07);transform-origin:0 50%;transition:opacity .6s var(--ease),filter .7s var(--ease),transform .9s var(--ease)}
+#about.on .tx{opacity:1;filter:none;transform:none;transition-delay:.15s}
+#about.on .ph{opacity:1;filter:none;transform:none;transition-delay:.3s}
+.abt .tx{width:25vw}.abt .tx p{margin:0;font-size:calc(1em - 1pt)}
+.abt .lk{margin-top:2.4em}
+.abt .ph{width:28vw;aspect-ratio:3/2;background:#f1f1f1;color:#bbb;display:grid;place-items:center}
 @media (max-width:800px){
- #back{left:2.5vw;top:calc(env(safe-area-inset-top,0px) + 14px)}
- header{flex-direction:column;justify-content:flex-start;gap:.7rem;padding:calc(7vh) 6vw 0 6vw}
- nav{min-width:0}
- #strip{padding:20vh 6vw 0 6vw;gap:5vw}
- #project .info{top:auto;transform:none;left:6vw;width:88vw;max-height:none;display:grid;grid-template-columns:1fr 1fr;gap:4vw;align-items:start}
- #viewer #vstrip{padding-left:6vw}
- .card{scroll-margin-left:6vw}
- .card img{max-width:70vw;max-height:40vh}
- #about-view .in{flex-direction:column-reverse;left:6vw;top:11vh;transform:none;width:88vw;gap:1.4rem}
- #about-view .txt{width:100%}
- #about-view .photo{width:56vw}
+ body{font-size:clamp(10px,2.95vw,17px)}
+ #hdr{top:12dvh}
+ .t{left:14vw}
+ #hdr nav{left:14vw;top:5.6em}
+ #tl{padding:22dvh 14vw 0 14vw}
+ #back{left:3.5vw;top:calc(4.6dvh - .3em)}
+ .grp{position:absolute;inset:0;transform:none;display:block}
+ .info{position:absolute;left:14vw;right:10vw;top:63dvh;width:auto;display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:start}
+ .team{margin-top:0}
+ .gimg{position:absolute}
+ #vt{padding:0 5vw;gap:4vw}.card img{max-width:90vw;max-height:50vh}
+ .abt{left:14vw;top:11dvh;transform:none;width:72vw;flex-direction:column-reverse;gap:1.6em}
+ .abt .tx{width:100%}.abt .ph{width:100%}
 }
 @media (prefers-reduced-motion:reduce){*{transition-duration:.01s!important}}
 </style>
 </head>
 <body>
-<div id="cur"></div>
-<button id="back" aria-label="Back"><svg width="17" height="36" viewBox="0 0 22 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2 4 24l14 22"/></svg></button>
+<button id="back" aria-label="Back"><svg viewBox="0 0 60.08 60.08"><path d="M25.64,58.83L2.56,30.04,25.64,1.25"/></svg></button>
 
 <section id="home" class="layer on" aria-label="Projects">
-  <header>
-    <h1>Ilgın Nehir Günay<span id="year"></span></h1>
+  <div id="hdr">
+    <div class="t">Ilgın Nehir Günay<span id="year"></span></div>
     <nav aria-label="Links">
-      <button id="about">About</button>
-      <a href="https://www.instagram.com/ilginnehirgunay/" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.linkedin.com/in/ilginnehirgunay/" target="_blank" rel="noopener">LinkedIn</a>
+      <button class="lnk" id="aboutBtn">About</button>
+      <a class="lnk" href="https://www.instagram.com/ilginnehirgunay/" target="_blank" rel="noopener">Instagram</a>
+      <a class="lnk" href="https://www.linkedin.com/in/ilginnehirgunay/" target="_blank" rel="noopener">LinkedIn</a>
     </nav>
-  </header>
-  <div id="strip"></div>
-</section>
-
-<section id="project" class="layer" aria-live="polite">
-  <div class="info" id="info">
-    <div class="meta"><h2 id="d-title"></h2><p id="d-role"></p><p id="d-ctx"></p><p id="d-loc"></p><p class="year" id="d-year"></p>
-    <button class="play" id="play" aria-label="Open gallery"><svg width="14" height="14" viewBox="0 0 18 18"><path d="M4 2l12 7-12 7z" fill="currentColor"/></svg></button></div>
-    <div class="credits" id="d-credits"></div>
   </div>
+  <div id="tl"></div>
 </section>
 
-<section id="viewer" class="layer" aria-label="Gallery"><div id="vstrip"></div><div id="dots"></div></section>
+<section id="gal" class="layer" aria-label="Project"><div id="gs"><div id="gt"></div></div></section>
+<section id="viewer" class="layer" aria-label="Gallery"><div id="vs"><div id="vt"></div></div><div id="dots"></div></section>
 
-<section id="about-view" class="layer" aria-label="About">
-  <div class="in">
-    <div class="txt">
+<section id="about" class="layer" aria-label="About">
+  <div id="abg" class="layer on" style="pointer-events:none"></div>
+  <div class="abt">
+    <div class="tx">
       <p>Ilgın Nehir Günay is an architect and multidisciplinary designer. His background spans the full spectrum of the built environment, from managing large-scale industrial site construction and historic restorations to leading his independent practice. Working as lead designer for both architectural projects and industrial design ventures, his work is defined by a commitment to structural honesty and utilitarian logic, ensuring every design serves a clear, functional purpose.</p>
-      <div class="links">
-        <a href="mailto:contact@hyphen.ing">Email</a>
-        <a href="https://www.instagram.com/ilginnehirgunay/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.linkedin.com/in/ilginnehirgunay/" target="_blank" rel="noopener">LinkedIn</a>
+      <div class="lk">
+        <a class="lnk" href="mailto:contact@hyphen.ing">Email</a>
+        <a class="lnk" href="https://www.instagram.com/ilginnehirgunay/" target="_blank" rel="noopener">Instagram</a>
+        <a class="lnk" href="https://www.linkedin.com/in/ilginnehirgunay/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
-    <div class="photo">Portrait</div>
+    <div class="ph">Portrait</div>
   </div>
 </section>
 
@@ -120,102 +128,247 @@ nav a:hover,nav button:hover,.links a:hover{color:var(--fg)}
 <script>
 const LB="Les Benjamins reSEARCH",LBC=["Bünyamin Aydın","Gökçe Gürpınar","Eren Yıldırım","Tulça Sezer","Cem Uyal","Yağmur Genç","Yiğitcan Genç","Ilgın Nehir Günay"];
 const d=(dir,names)=>names.split(" ").map(n=>"images/"+dir+"/"+n+".webp");
-/* Newest first (left) to oldest (right). cover = [width,height] of first image. */
+/* Newest first (left) to oldest (right). cover=[w,h]; k=size class (1 = tallest, like Mike's laptop). */
 const PROJECTS=[
- {title:"Fashion & Sneaker Store",role:"Project Architect and Site Manager",ctx:"OhmSole",year:"2025",cover:[1920,1080],credits:["Ayla Zhao","Mert Türkeli","Ilgın Nehir Günay"],
+ {title:"Fashion & Sneaker Store",role:"Project Architect and Site Manager",ctx:"OhmSole",year:"2025",cover:[1920,1080],k:1,credits:["Ayla Zhao","Mert Türkeli","Ilgın Nehir Günay"],
   media:d("ohmsole-store","ohmsole-general-orthographic-render ohmsole-ground-floor-plan-drawing ohmsole-entrance-installation-diagram ohmsole-general-view ohmsole-aa-section-drawing ohmsole-electrical-installation-detail ohmsole-stainless-steel-stools ohmsole-rearside-installation-diagram ohmsole-rearside ohmsole-bb-section-drawing ohmsole-shoeshelf-lighting-demo ohmsole-front-close-up ohmsole-checkout-counter-close-up ohmsole-frontside")},
- {title:"Hotpot Restaurant",role:"Project Architect and Site Manager",ctx:"Later Hotpot",year:"2024",cover:[1920,1080],credits:["Ayla Zhao","Daniyaer Haimiti","Ilgın Nehir Günay"],
+ {title:"Hotpot Restaurant",role:"Project Architect and Site Manager",ctx:"Later Hotpot",year:"2024",cover:[1920,1080],k:.8,credits:["Ayla Zhao","Daniyaer Haimiti","Ilgın Nehir Günay"],
   media:d("later-hotpot-restaurant","later-entrance")},
- {title:"Rocking Chair and Coffee Table",role:"Project Director and Lead Designer",ctx:LB,year:"2024",cover:[1920,1080],credits:LBC,
+ {title:"Rocking Chair and Coffee Table",role:"Project Director and Lead Designer",ctx:LB,year:"2024",cover:[1920,1080],k:1,credits:LBC,
   media:d("lb-research","lb-research-wooden-prototypes lb-research-bench-inner-parts lb-research-wooden-rocking-chair")},
- {title:"Crew Merch",role:"Designer",ctx:LB,year:"2023",cover:[1080,1080],credits:LBC,
+ {title:"Crew Merch",role:"Designer",ctx:LB,year:"2023",cover:[1080,1080],k:.75,credits:LBC,
   media:d("lb-research","lb-research-long-sleeve-tee-back-close-up lb-research-long-sleeve-tee-front lb-research-long-sleeve-tee-back lb-research-long-sleeve-tee-logo-set")},
- {title:"Mechanical Bench",role:"Project Director and Lead Designer",ctx:LB,year:"2022 — 2024",cover:[3840,1080],credits:LBC,
+ {title:"Mechanical Bench",role:"Project Director and Lead Designer",ctx:LB,year:"2022 — 2024",cover:[3840,1080],k:1,credits:LBC,
   media:d("lb-research","lb-research-bench lb-research-bench-inside-close-up lb-research-bench-installation-demo lb-research-bench-motion-demo lb-research-bench-sketches lb-research-bench-render lb-research-wooden-bench-prototype lb-research-bench-installation lb-research-bench-side lb-research-bench-slices-installation lb-research-bench-padlock-installation")},
- {title:"Xiaomi Mi Stores",role:"Project Architect and Site Manager",ctx:"Baran Construction",loc:"Antalya, Ankara and Istanbul, Türkiye",year:"2022 — 2023",cover:[3840,1080],credits:[],
+ {title:"Xiaomi Mi Stores",role:"Project Architect and Site Manager",ctx:"Baran Construction",loc:"Antalya, Ankara and Istanbul, Türkiye",year:"2022 — 2023",cover:[3840,1080],k:1,credits:[],
   media:d("xiaomi-mi-stores","mi-stores-hero mi-stores-details01 mi-stores-details02 mi-stores-details03 mi-stores-demolition mi-stores-steel-box-sections mi-stores-gypsum-boarding mi-stores-plaster-job mi-stores-fixture-installation01 mi-stores-plaster-job02 mi-stores-fixture-installation02 mi-stores-fixture-installation03")}
 ];
 const src=p=>(window.EMBED&&EMBED[p])||p;
 const $=id=>document.getElementById(id);
-const strip=$("strip"),home=$("home");
-let state="home",cur=null,curEl=null,fly=null,curIdx=0;
-
-const dot=$("cur");let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my;
-if(matchMedia("(pointer:fine)").matches){
-  addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;dot.style.opacity=1});
-  document.addEventListener("mouseleave",()=>dot.style.opacity=0);
-  (function loop(){cx+=(mx-cx)*.22;cy+=(my-cy)*.22;dot.style.transform="translate("+cx+"px,"+cy+"px)";requestAnimationFrame(loop)})();
-}
+const home=$("home"),tl=$("tl"),gal=$("gal"),hdr=$("hdr"),backBtn=$("back");
+const MOB=()=>innerWidth<=800,em=()=>parseFloat(getComputedStyle(document.body).fontSize);
 const fit=(w,h,bw,bh)=>{const s=Math.min(bw/w,bh/h);return{w:w*s,h:h*s}};
-const K=.75,M=()=>innerWidth<=800;
-function homeSize(p){return M()?fit(p.cover[0],p.cover[1],innerWidth*.62*K,innerHeight*.2*K):fit(p.cover[0],p.cover[1],innerWidth*.62*K,innerHeight*.56*K)}
-function targetRect(p){
-  const W=innerWidth,H=innerHeight;
-  if(M()){const s=fit(p.cover[0],p.cover[1],W*.88*K,H*.34*K);return{x:W*.06,y:H*.11,w:s.w,h:s.h}}
-  const s=fit(p.cover[0],p.cover[1],W*.62*K,H*.76*K);return{x:W*.32,y:(H-s.h)/2,w:s.w,h:s.h};
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+let state="home",curIdx=0,items=[],pages=[],gest=null,q=0,raf=0,inr=0;
+
+/* ---------- sizes (container = 65vh x class, capped at 61.4vw; mobile 20vh / 57vw) ---------- */
+function tlSize(p){
+  const vh=innerHeight,vw=innerWidth,a=p.cover[0]/p.cover[1];
+  let h=(MOB()?.2:.65)*vh*p.k,w=h*a;const mw=(MOB()?.57:.614)*vw;
+  if(w>mw){w=mw;h=w/a}return{w,h};
 }
-function sizeItems(){[...strip.children].forEach((el,i)=>{const s=homeSize(PROJECTS[i]),im=el.firstChild;im.style.width=s.w+"px";im.style.height=s.h+"px"})}
+function galSize(p){
+  const vh=innerHeight,vw=innerWidth;
+  if(MOB())return fit(p.cover[0],p.cover[1],vw*.92,vh*.42);
+  return fit(p.cover[0],p.cover[1],vw*.88-17*em(),vh*.74);
+}
+
+/* ---------- pager: hold and drag left/right, snaps with momentum ---------- */
+function Pager(track,snaps,onIdx){
+  return{off:0,idx:0,raf:0,
+    set(o){this.off=o;track.style.transform="translate3d("+(-o)+"px,0,0)"},
+    drag(o){const s=snaps(),lo=s[0],hi=s[s.length-1];let v=o;if(v<lo)v=lo+(v-lo)*.35;if(v>hi)v=hi+(v-hi)*.35;this.set(v)},
+    near(o){const s=snaps();let b=0;s.forEach((v,i)=>{if(Math.abs(v-o)<Math.abs(s[b]-o))b=i});return b},
+    go(i,instant){
+      const s=snaps();i=clamp(i,0,s.length-1);this.idx=i;if(onIdx)onIdx(i);cancelAnimationFrame(this.raf);
+      const tgt=s[i];if(instant){this.set(tgt);return}
+      let last=performance.now();const step=t=>{const dt=t-last;last=t;this.set(this.off+(tgt-this.off)*(1-Math.exp(-dt/110)));
+        if(Math.abs(tgt-this.off)>.4)this.raf=requestAnimationFrame(step);else this.set(tgt)};
+      this.raf=requestAnimationFrame(step);
+    },
+    release(vx){this.go(this.near(this.off-vx*220))}
+  };
+}
+const gp=Pager($("gt"),()=>pages.map((_,i)=>i*innerWidth),i=>{curIdx=i});
+const vp=Pager($("vt"),()=>{const v=$("vt"),pl=parseFloat(getComputedStyle(v).paddingLeft);return[...v.children].map(c=>c.offsetLeft-pl)},i=>{[...$("dots").children].forEach((x,k)=>x.classList.toggle("on",k===i))});
+
+/* ---------- build ---------- */
+const PLAY='<svg viewBox="0 0 68 68"><circle cx="34" cy="34" r="32.8"/><polygon points="28.5,23 28.5,45 45.5,34"/></svg>';
 PROJECTS.forEach((p,i)=>{
-  const b=document.createElement("button");
-  b.className="item";b.setAttribute("aria-label",p.title+", "+p.year);
-  const im=new Image();im.alt=p.title;im.src=src(p.media[0]);b.appendChild(im);
-  b.onclick=()=>openProject(i,b);strip.appendChild(b);
+  const b=document.createElement("button");b.className="item";b.setAttribute("aria-label",p.title+", "+p.year);
+  const im=new Image();im.alt=p.title;im.src=src(p.media[0]);im.draggable=false;b.appendChild(im);
+  b.onclick=()=>openProject(i);tl.appendChild(b);items.push(b);
+  const pg=document.createElement("div");pg.className="page";
+  pg.innerHTML='<div class="grp"><div class="info"><div><h2></h2><div class="sub"></div><button class="play" aria-label="Open gallery">'+PLAY+'</button></div><div class="team"></div></div></div>';
+  pg.querySelector("h2").textContent=p.title;
+  const lines=[p.role,p.ctx,p.loc].filter(Boolean).concat(p.year);
+  pg.querySelector(".sub").innerHTML=lines.map(()=>"<span></span>").join("");
+  [...pg.querySelectorAll(".sub span")].forEach((s,k)=>{s.textContent=lines[k];if(k===lines.length-1)s.className="dt"});
+  pg.querySelector(".team").innerHTML=p.credits.map(()=>"<span></span>").join("");
+  [...pg.querySelectorAll(".team span")].forEach((s,k)=>s.textContent=p.credits[k]);
+  const g=new Image();g.className="gimg";g.alt=p.title;g.src=src(p.media[0]);g.draggable=false;
+  pg.querySelector(".grp").appendChild(g);
+  pg.querySelector(".play").onclick=e=>{e.stopPropagation();openViewer()};
+  $("gt").appendChild(pg);pages.push({el:pg,img:g});
 });
-sizeItems();addEventListener("resize",sizeItems);
-
-let shown="";
-function setYear(y){if(y===shown)return;shown=y;const e=$("year");e.style.opacity=0;setTimeout(()=>{e.textContent=y;e.style.opacity=1},150)}
-function updateYear(){let best=0,bd=1e9;[...strip.children].forEach((el,i)=>{const r=el.getBoundingClientRect(),dd=Math.abs(r.left+r.width/2-innerWidth*.5);if(dd<bd){bd=dd;best=i}});setYear(PROJECTS[best].year)}
-strip.addEventListener("scroll",updateYear,{passive:true});
-$("year").textContent=shown=PROJECTS[0].year;
-
-function layersOn(on){["home","project","viewer","about-view"].forEach(l=>$(l).classList.toggle("on",on.includes(l)))}
-const rectOf=el=>{const r=el.getBoundingClientRect();return{x:r.left,y:r.top,w:r.width,h:r.height}};
-function place(el,f,t){el.style.transform="translate("+(t.x-f.x)+"px,"+(t.y-f.y)+"px) scale("+t.w/f.w+","+t.h/f.h+")"}
-function row(id,v){const e=$(id);e.textContent=v||"";e.style.display=v?"":"none"}
-
-function openProject(i,el){
-  state="project";cur=PROJECTS[i];curEl=el;
-  row("d-title",cur.title);row("d-role",cur.role);row("d-ctx",cur.ctx);row("d-loc",cur.loc);row("d-year",cur.year);
-  $("d-credits").innerHTML=cur.credits.map(c=>"<div>"+c+"</div>").join("");
-  const f=rectOf(el.firstChild);
-  fly=new Image();fly.src=src(cur.media[0]);fly.className="fly";fly.alt="";
-  Object.assign(fly.style,{left:f.x+"px",top:f.y+"px",width:f.w+"px",height:f.h+"px"});
-  document.body.appendChild(fly);el.style.visibility="hidden";
-  home.classList.add("away");layersOn(["project"]);$("back").classList.add("on");
-  const tr=targetRect(cur);$("info").style.top=M()?(tr.y+tr.h+innerHeight*.04)+"px":"";
-  fly.getBoundingClientRect();place(fly,f,tr);
+function layout(){
+  const vh=innerHeight,vw=innerWidth;
+  PROJECTS.forEach((p,i)=>{
+    const s=tlSize(p),im=items[i].firstChild;im.style.width=s.w+"px";im.style.height=s.h+"px";
+    items[i].style.marginLeft=i?((PROJECTS[i-1].ctx===p.ctx?2.75:6)+"em"):"0";
+    const g=galSize(p),gi=pages[i].img;gi.style.width=g.w+"px";gi.style.height=g.h+"px";
+    if(MOB()){gi.style.left=(vw-g.w)/2+"px";gi.style.top=((.11+.21)*vh-g.h/2)+"px"}else{gi.style.left=gi.style.top=""}
+  });
+  gp.set(curIdx*vw);
 }
-function closeProject(){
-  state="home";const t=rectOf(curEl.firstChild);
-  fly.style.transform="translate("+(t.x-parseFloat(fly.style.left))+"px,"+(t.y-parseFloat(fly.style.top))+"px) scale(1,1)";
-  home.classList.remove("away");layersOn(["home"]);$("back").classList.remove("on");
-  const el=curEl,fl=fly;setTimeout(()=>{el.style.visibility="";fl.remove()},820);fly=null;
+layout();addEventListener("resize",layout);
+
+/* ---------- year: only the digits that change roll ---------- */
+const yr=$("year");let shown="";const nowY=String(new Date().getFullYear());
+function setYear(y){
+  if(y===shown)return;const o=shown;shown=y;yr.innerHTML="";
+  const n=Math.max(o.length,y.length),dec=parseInt(y)<parseInt(o),ease="cubic-bezier(.32,.72,0,1)",nb=s=>s===" "?"\u00a0":s;
+  for(let i=0;i<n;i++){
+    const a=o[i]||"",b=y[i]||"",c=document.createElement("span");c.className="c";
+    if(!o||a===b){c.textContent=nb(b);yr.appendChild(c);continue}
+    c.innerHTML='<span class="n"></span><span class="o"></span>';
+    c.firstChild.textContent=nb(b);c.lastChild.textContent=nb(a);yr.appendChild(c);
+    c.firstChild.animate([{transform:"translateY("+(dec?100:-100)+"%)",opacity:0},{transform:"translateY(0)",opacity:1}],{duration:700,easing:ease});
+    c.lastChild.animate([{transform:"translateY(0)",opacity:1},{transform:"translateY("+(dec?-100:100)+"%)",opacity:0}],{duration:700,easing:ease,fill:"forwards"});
+    setTimeout(()=>{if(c.isConnected)c.textContent=nb(b)},730);
+  }
 }
+function updateYear(){
+  if(tl.scrollLeft<innerWidth*.04){setYear(nowY);return}
+  let best=0,bd=1e9;items.forEach((el,i)=>{const r=el.getBoundingClientRect(),dd=Math.abs(r.left+r.width/2-innerWidth*.5);if(dd<bd){bd=dd;best=i}});
+  setYear(PROJECTS[best].year);
+}
+tl.addEventListener("scroll",updateYear,{passive:true});setYear(nowY);
+
+/* ---------- open / close: one progress value q (0 = home, 1 = project) drives everything ---------- */
+const rect=el=>{const r=el.getBoundingClientRect();return{x:r.left,y:r.top,w:r.width,h:r.height}};
+const itemRect=i=>{const im=items[i].firstChild;return{x:im.offsetLeft-tl.scrollLeft,y:im.offsetTop,w:im.offsetWidth,h:im.offsetHeight}};
+function backShow(v){backBtn.style.setProperty("--q",v);backBtn.style.pointerEvents=v>.5?"auto":"none"}
+
+function begin(i){
+  if(gest&&gest.i===i)return;
+  if(gest)gest.fly.remove();
+  const closing=state==="gal";
+  curIdx=i;gp.go(i,true);
+  let A=itemRect(i);
+  if(A.x<0||A.x+A.w>innerWidth){tl.scrollLeft+=A.x+A.w/2-innerWidth/2;A=itemRect(i)}
+  const B=rect(pages[i].img);
+  const fly=new Image();fly.src=src(PROJECTS[i].media[0]);fly.className="fly";fly.alt="";
+  Object.assign(fly.style,{left:A.x+"px",top:A.y+"px",width:A.w+"px",height:A.h+"px"});
+  document.body.appendChild(fly);
+  pages[i].img.style.visibility="hidden";
+  gest={i,A,B,fly};q=closing?1:0;render(q);
+}
+function render(v){
+  q=v;const g=gest;if(!g)return;const{A,B,fly,i}=g;
+  const x=A.x+(B.x-A.x)*v,y=A.y+(B.y-A.y)*v,w=A.w+(B.w-A.w)*v,h=A.h+(B.h-A.h)*v;
+  fly.style.transform="translate("+(x-A.x)+"px,"+(y-A.y)+"px) scale("+w/A.w+","+h/A.h+")";
+  hdr.style.opacity=clamp(1-v*3);hdr.style.pointerEvents=v>.05?"none":"";
+  const ex=innerWidth*.12;
+  items.forEach((el,k)=>{
+    if(k===i){el.style.visibility="hidden";return}
+    el.style.visibility="";el.style.opacity=clamp(1-v*1.5);el.style.pointerEvents=v>.3?"none":"";
+    el.style.transform="translateX("+((k<i?-1:1)*v*ex)+"px)";
+  });
+  gal.style.opacity=v>0?1:0;gal.style.pointerEvents=v>=1?"auto":"none";
+  gal.style.setProperty("--io",clamp((v-.5)*2));
+  backShow(v);
+}
+function settle(v){
+  const g=gest;if(!g)return;g.fly.remove();pages[g.i].img.style.visibility="";gest=null;
+  if(v>=1){state="gal"}
+  else{
+    state="home";
+    items.forEach(el=>{el.style.opacity=el.style.transform=el.style.visibility=el.style.pointerEvents=""});
+    hdr.style.opacity=hdr.style.pointerEvents="";gal.style.opacity=0;gal.style.pointerEvents="none";backShow(0);updateYear();
+  }
+}
+function animateTo(t){
+  cancelAnimationFrame(raf);let last=performance.now();
+  const step=now=>{const dt=now-last;last=now;const v=q+(t-q)*(1-Math.exp(-dt/140));
+    if(Math.abs(t-v)<.002){render(t);settle(t);return}
+    render(v);raf=requestAnimationFrame(step)};
+  raf=requestAnimationFrame(step);
+}
+function openProject(i){if(gest&&gest.i!==i)return;if(!gest){if(state!=="home")return;begin(i)}animateTo(1)}
+function closeProject(){if(!gest){if(state!=="gal")return;begin(curIdx)}animateTo(0)}
+
+/* ---------- viewer ---------- */
+function layersOn(a){["viewer","about"].forEach(l=>$(l).classList.toggle("on",a.includes(l)))}
 function openViewer(){
-  state="viewer";const v=$("vstrip");
-  v.innerHTML=cur.media.map((m,i)=>'<div class="card"><div class="cap"><b>'+cur.title+'</b>'+cur.ctx+' '+cur.year+'</div><img src="'+src(m)+'" alt="'+cur.title+' '+(i+1)+'"'+(i>1?' loading="lazy"':'')+'></div>').join("");
-  v.scrollLeft=0;
-  $("dots").innerHTML=cur.media.map((_,i)=>'<i class="'+(i?"":"on")+'"></i>').join("");
-  fly.classList.add("blur");layersOn(["viewer"]);
+  state="viewer";const p=PROJECTS[curIdx],v=$("vt");
+  v.innerHTML=p.media.map((m,i)=>'<div class="card"><div class="cap"><b>'+p.title+'</b>'+p.ctx+' '+p.year+'</div><img draggable="false" src="'+src(m)+'" alt="'+p.title+' '+(i+1)+'"></div>').join("");
+  $("dots").innerHTML=p.media.map((_,i)=>'<i class="'+(i?"":"on")+'"></i>').join("");
+  vp.go(0,true);gal.classList.add("playing");layersOn(["viewer"]);
 }
-function closeViewer(){state="project";fly.classList.remove("blur");layersOn(["project"])}
-$("vstrip").addEventListener("scroll",()=>{
-  const cs=[...$("vstrip").children];let b=0,bd=1e9;
-  cs.forEach((c,i)=>{const dd=Math.abs(c.getBoundingClientRect().left-parseFloat(getComputedStyle(c).scrollMarginLeft));if(dd<bd){bd=dd;b=i}});
-  [...$("dots").children].forEach((x,i)=>x.classList.toggle("on",i===b));
-},{passive:true});
+function closeViewer(){state="gal";gal.classList.remove("playing");layersOn([])}
 
-$("play").onclick=openViewer;
-$("about").onclick=()=>{state="about";home.classList.add("blur");layersOn(["home","about-view"]);$("back").classList.add("on")};
-$("back").onclick=()=>{
-  if(state==="viewer")closeViewer();
-  else if(state==="project")closeProject();
-  else if(state==="about"){state="home";home.classList.remove("blur");layersOn(["home"]);$("back").classList.remove("on")}
-};
-addEventListener("keydown",e=>{if(e.key==="Escape")$("back").click()});
-document.addEventListener("click",e=>{if(state!=="home"&&!e.target.closest("button,a"))$("back").click()});
-[strip,$("vstrip")].forEach(s=>s.addEventListener("wheel",e=>{if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){s.scrollLeft+=e.deltaY;e.preventDefault()}},{passive:false}));
+/* ---------- about ---------- */
+$("aboutBtn").onclick=e=>{e.stopPropagation();state="about";home.classList.add("abt");layersOn(["about"]);backShow(1)};
+function closeAbout(){state="home";home.classList.remove("abt");layersOn([]);backShow(0)}
+
+backBtn.onclick=e=>{e.stopPropagation();({viewer:closeViewer,gal:closeProject,about:closeAbout}[state]||(gest?closeProject:()=>{}))()};
+addEventListener("keydown",e=>{
+  if(e.key==="Escape")backBtn.onclick(e);
+  if(state==="gal"&&!gest&&(e.key==="ArrowRight"||e.key==="ArrowLeft"))gp.go(curIdx+(e.key==="ArrowRight"?1:-1));
+});
+
+/* ---------- pointer: hold and drag ---------- */
+let g=null,suppress=false;
+addEventListener("pointerdown",e=>{
+  if(e.button>0||e.target.closest("#back,.lnk,.play,a")||state==="about")return;
+  suppress=false;cancelAnimationFrame(inr);
+  const it=e.target.closest(".item");
+  g={x0:e.clientX,y0:e.clientY,lx:e.clientX,ly:e.clientY,t:performance.now(),vx:0,vy:0,axis:null,item:it?items.indexOf(it):-1,sl0:tl.scrollLeft,q0:q,
+     off0:state==="gal"?gp.off:state==="viewer"?vp.off:0};
+});
+addEventListener("pointermove",e=>{
+  if(!g)return;const dx=e.clientX-g.x0,dy=e.clientY-g.y0,now=performance.now(),dt=Math.max(1,now-g.t);
+  g.vx=.7*g.vx+.3*(e.clientX-g.lx)/dt;g.vy=.7*g.vy+.3*(e.clientY-g.ly)/dt;g.lx=e.clientX;g.ly=e.clientY;g.t=now;
+  if(!g.axis){if(Math.hypot(dx,dy)<6)return;g.axis=Math.abs(dx)>Math.abs(dy)?"x":"y";suppress=true;cancelAnimationFrame(raf)}
+  if(g.axis==="x"){
+    if(gest)return;
+    if(state==="home")tl.scrollLeft=g.sl0-dx;
+    else if(state==="gal")gp.drag(g.off0-dx);
+    else if(state==="viewer")vp.drag(g.off0-dx);
+  }else{
+    if(state==="viewer"||state==="about")return;
+    if(!gest){
+      if(state==="home"&&g.item>=0&&dy<0){begin(g.item);g.q0=0}
+      else if(state==="gal"&&dy>0){begin(curIdx);g.q0=1}
+      else return;
+    }
+    render(clamp(g.q0-dy/(innerHeight*.4)));
+  }
+});
+function endDrag(){
+  if(!g)return;const a=g;g=null;if(!a.axis)return;setTimeout(()=>{suppress=false},60);
+  if(a.axis==="x"){
+    if(gest)return;
+    if(state==="home"){let v=-a.vx;const f=t=>{const dt=Math.min(32,t-(f.l||t));f.l=t;tl.scrollLeft+=v*dt;v*=Math.pow(.995,dt);if(Math.abs(v)>.02)inr=requestAnimationFrame(f)};f.l=0;inr=requestAnimationFrame(f)}
+    else if(state==="gal")gp.release(a.vx);
+    else if(state==="viewer")vp.release(a.vx);
+  }else if(gest){
+    let t=q>.5?1:0;if(a.vy<-.5)t=1;else if(a.vy>.5)t=0;animateTo(t);
+  }
+}
+addEventListener("pointerup",endDrag);addEventListener("pointercancel",endDrag);
+addEventListener("click",e=>{if(suppress){e.stopPropagation();e.preventDefault()}},true);
+/* tapping anywhere that is not a button or link goes back */
+document.addEventListener("click",e=>{if((state==="gal"||state==="viewer"||state==="about")&&!gest&&!e.target.closest("button,a"))backBtn.onclick(e)});
+
+/* ---------- wheel: scrolling down over a project opens it, scrolling up goes back; sideways browsing is drag only ---------- */
+let wt=0,wdir=0;
+addEventListener("wheel",e=>{
+  e.preventDefault();
+  if(state==="about"||state==="viewer")return;
+  const dy=e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?innerHeight:1);
+  if(!dy||Math.abs(e.deltaX)>Math.abs(dy))return;
+  if(!gest){
+    if(state==="home"){if(dy<=0)return;const it=document.elementFromPoint(e.clientX,e.clientY);const k=it?items.indexOf(it.closest(".item")):-1;if(k<0)return;begin(k)}
+    else if(state==="gal"){if(dy>=0)return;begin(curIdx)}
+    else return;
+  }
+  cancelAnimationFrame(raf);wdir=dy>0?1:-1;
+  render(clamp(q+dy/600));
+  clearTimeout(wt);wt=setTimeout(()=>animateTo(wdir>0?(q>.12?1:0):(q<.88?0:1)),110);
+},{passive:false});
+requestAnimationFrame(()=>document.body.classList.add("ready"));
 </script>
 </body>
 </html>
