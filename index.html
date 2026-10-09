@@ -54,7 +54,7 @@ img{display:block;-webkit-user-drag:none;user-select:none}
 .team{color:var(--mute);margin-top:4em}.team span{display:block}
 .gimg{flex:none}
 #gal.playing .grp{opacity:0;filter:blur(20px);pointer-events:none}
-.fly{position:fixed;z-index:4;transform-origin:0 0;transition:transform .85s var(--ease),filter .6s var(--ease),opacity .6s;will-change:transform}
+.fly{position:fixed;z-index:4;transform-origin:0 0;will-change:transform;transition:filter .4s,opacity .4s}
 .fly.blur{filter:blur(20px);opacity:0}
 /* viewer */
 #vs{position:absolute;inset:0;overflow:hidden}
@@ -246,9 +246,9 @@ function begin(i){
   const closing=state==="gal";
   curIdx=i;gp.go(i,true);
   let A=itemRect(i);
-  if(A.x<0||A.x+A.w>innerWidth){tl.scrollLeft+=A.x+A.w/2-innerWidth/2;A=itemRect(i)}
+  if(closing&&(A.x+A.w<0||A.x>innerWidth)){tl.scrollLeft+=A.x+A.w/2-innerWidth/2;A=itemRect(i)}
   const B=rect(pages[i].img);
-  const fly=new Image();fly.src=src(PROJECTS[i].media[0]);fly.className="fly";fly.alt="";
+  const fly=new Image();fly.src=src(PROJECTS[i].media[0]);fly.className="fly";fly.decoding="sync";fly.alt="";
   Object.assign(fly.style,{left:A.x+"px",top:A.y+"px",width:A.w+"px",height:A.h+"px"});
   document.body.appendChild(fly);
   pages[i].img.style.visibility="hidden";
@@ -279,10 +279,13 @@ function settle(v){
   }
 }
 function animateTo(t){
-  cancelAnimationFrame(raf);let last=performance.now();
-  const step=now=>{const dt=now-last;last=now;const v=q+(t-q)*(1-Math.exp(-dt/140));
-    if(Math.abs(t-v)<.002){render(t);settle(t);return}
-    render(v);raf=requestAnimationFrame(step)};
+  cancelAnimationFrame(raf);
+  const q0=q,dur=Math.max(160,380*Math.abs(t-q0)),t0=performance.now();
+  const step=now=>{
+    const p=clamp((now-t0)/dur),e=1-Math.pow(1-p,3);
+    if(p>=1){render(t);settle(t);return}
+    render(q0+(t-q0)*e);raf=requestAnimationFrame(step);
+  };
   raf=requestAnimationFrame(step);
 }
 function openProject(i){if(gest&&gest.i!==i)return;if(!gest){if(state!=="home")return;begin(i)}animateTo(1)}
@@ -366,7 +369,7 @@ addEventListener("wheel",e=>{
   }
   cancelAnimationFrame(raf);wdir=dy>0?1:-1;
   render(clamp(q+dy/600));
-  clearTimeout(wt);wt=setTimeout(()=>animateTo(wdir>0?(q>.12?1:0):(q<.88?0:1)),110);
+  clearTimeout(wt);wt=setTimeout(()=>animateTo(wdir>0?(q>.12?1:0):(q<.88?0:1)),70);
 },{passive:false});
 requestAnimationFrame(()=>document.body.classList.add("ready"));
 </script>
