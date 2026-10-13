@@ -40,7 +40,7 @@ img{display:block;-webkit-user-drag:none;user-select:none}
 
 #back{position:fixed;left:2.6vw;top:calc(6.6vh - .65em);font-size:20px;width:1.6em;height:1.6em;display:grid;place-items:center;z-index:6;opacity:calc(var(--q,0)*.3);pointer-events:none;transition:opacity .25s}
 #back svg{height:1.3em;width:1.3em;fill:none;stroke:#000;stroke-width:4.4;stroke-miterlimit:10}
-#back:hover{opacity:var(--q,0)}
+@media (hover:hover){#back:hover{opacity:var(--q,0)}}
 
 #gal{transition:none}
 #gs{position:absolute;inset:0;overflow:hidden}
@@ -53,8 +53,9 @@ img{display:block;-webkit-user-drag:none;user-select:none}
 .play{display:block;position:relative;width:2.1em;height:2.1em;margin-top:1.8em}
 .play img{position:absolute;inset:0;width:100%;height:100%;transition:opacity .2s}
 .play .h{opacity:0}
-.play:hover .h,.play:active .h,.play:focus-visible .h{opacity:1}
-.play:hover .n,.play:active .n,.play:focus-visible .n{opacity:0}
+.play:active .h,.play:focus-visible .h{opacity:1}
+.play:active .n,.play:focus-visible .n{opacity:0}
+@media (hover:hover){.play:hover .h{opacity:1}.play:hover .n{opacity:0}}
 .team{color:var(--mute);margin-top:4em}.team span{display:block}
 .gimg{flex:none}
 #gal.playing .grp{opacity:0;filter:blur(20px);pointer-events:none}
@@ -66,6 +67,7 @@ img{display:block;-webkit-user-drag:none;user-select:none}
 .card{flex:none}
 #vcap{position:absolute;left:17.5vw;top:11vh;font-size:calc(1em - 1pt);line-height:1.25;pointer-events:none}#vcap b{display:block;font-weight:700}
 .card img{height:56vh;width:auto;background:#f4f4f4}
+.card img.ld{aspect-ratio:3/2}
 #dots{position:absolute;left:50%;bottom:5vh;display:flex;gap:.55em;transform:translateX(-50%)}
 #dots i{width:.4em;height:.4em;border-radius:50%;background:#d6d6d6;transition:background .3s}#dots i.on{background:#555}
 
@@ -92,7 +94,7 @@ img{display:block;-webkit-user-drag:none;user-select:none}
  .gimg{position:absolute}
  #vt{padding:0 5vw;gap:4vw}
  #vcap{left:5vw;top:15dvh}
- .card img{height:30dvh}
+ .card img{height:45dvh}
  .abt{left:14vw;top:11dvh;transform:none;width:72vw;flex-direction:column-reverse;gap:1.6em}
  .abt .tx{width:100%}.abt .ph{width:100%}
 }
@@ -121,9 +123,9 @@ img{display:block;-webkit-user-drag:none;user-select:none}
   <div id="abg" class="layer on" style="pointer-events:none"></div>
   <div class="abt">
     <div class="tx">
-      <p>Ilgın Nehir Günay is an architect and multidisciplinary designer. His background spans the full spectrum of the built environment, from managing large-scale industrial site construction and historic restorations to leading his independent practice. Working as lead designer for both architectural projects and industrial design ventures, his work is defined by a commitment to structural honesty and utilitarian logic, ensuring every design serves a clear, functional purpose.</p>
+      <p>Ilgın Nehir Günay is an architect and multidisciplinary designer whose work spans large-scale industrial construction, historic restoration, and independent practice. As lead designer across architecture and industrial design, his work is grounded in structural honesty, utilitarian logic, and clear functional purpose.</p>
       <div class="lk">
-        <a class="lnk" href="mailto:contact@hyphen.ing">Email</a>
+        <a class="lnk" href="mailto:ilginnehirgunay@gmail.com">Email</a>
         <a class="lnk" href="https://www.instagram.com/ilginnehirgunay/" target="_blank" rel="noopener">Instagram</a>
         <a class="lnk" href="https://www.linkedin.com/in/ilginnehirgunay/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
@@ -138,7 +140,7 @@ const LB="Les Benjamins reSEARCH",LBC=["Bünyamin Aydın","Gökçe Gürpınar","
 const d=(dir,names)=>names.split(" ").map(n=>"images/"+dir+"/"+n+".webp");
 
 const PROJECTS=[
- {title:"Shelving System",role:"Industrial Designer",ctx:"OhmSole",year:"2026",cover:[1080,1920],credits:[],
+ {title:"Shelving System",role:"Industrial Designer",ctx:"OhmSole",year:"2026",cover:[1080,1920],credits:["Ayla Zhao","Mert Türkeli","Ilgın Nehir Günay"],
   media:d("ohmsole-store","ohmsole-cashier-background01 ohmsole-cashier-background02 ohmsole-cashier-background03 ohmsole-cashier-background04 ohmsole-cashier-background05")},
  {title:"Fashion & Sneaker Store",role:"Project Architect and Site Manager",ctx:"OhmSole",year:"2025",cover:[1197,1920],k:1,credits:["Ayla Zhao","Mert Türkeli","Ilgın Nehir Günay"],
   media:d("ohmsole-store","ohmsole-entrance-perspective-render ohmsole-general-orthographic-render ohmsole-ground-floor-plan-drawing ohmsole-entrance-installation-diagram ohmsole-general-view ohmsole-aa-section-drawing ohmsole-electrical-installation-detail ohmsole-stainless-steel-stools ohmsole-rearside-installation-diagram ohmsole-rearside ohmsole-bb-section-drawing ohmsole-shoeshelf-lighting-demo ohmsole-front-close-up ohmsole-checkout-counter-close-up ohmsole-frontside")},
@@ -163,7 +165,7 @@ let state="home",curIdx=0,items=[],pages=[],gest=null,q=0,raf=0,inr=0;
 
 function tlSize(p){
   const vh=innerHeight,vw=innerWidth,a=p.cover[0]/p.cover[1];
-  const h=(MOB()?.2:.55)*vh,w=h*a;return{w,h};
+  const h=(MOB()?.3:.55)*vh,w=h*a;return{w,h};
 }
 function galSize(p){
   const vh=innerHeight,vw=innerWidth;
@@ -198,7 +200,7 @@ const PLAY='<img class="n" alt="" draggable="false" src="data:image/png;base64,i
 PROJECTS.forEach((p,i)=>{
   const b=document.createElement("button");b.className="item";b.setAttribute("aria-label",p.title+", "+p.year);
   const im=new Image();im.alt=p.title;im.src=src(p.media[0]);im.draggable=false;b.appendChild(im);
-  b.onclick=()=>openProject(i);tl.appendChild(b);items.push(b);
+  b.onclick=()=>openProject(i);b.addEventListener("pointerenter",()=>warm(i));tl.appendChild(b);items.push(b);
   const probe=new Image();probe.onload=()=>{if(probe.naturalWidth){p.cover=[probe.naturalWidth,probe.naturalHeight];layout()}};probe.src=src(p.media[0]);
   const pg=document.createElement("div");pg.className="page";
   pg.innerHTML='<div class="grp"><div class="info"><div><h2></h2><div class="sub"></div><button class="play" aria-label="Open gallery">'+PLAY+'</button></div><div class="team"></div></div></div>';
@@ -217,7 +219,7 @@ function layout(){
   const vh=innerHeight,vw=innerWidth;
   PROJECTS.forEach((p,i)=>{
     const s=tlSize(p),im=items[i].firstChild;im.style.width=s.w+"px";im.style.height=s.h+"px";
-    items[i].style.marginLeft=i?((PROJECTS[i-1].ctx===p.ctx?2.75:6)+"em"):"0";
+    items[i].style.marginLeft=i?"4.5em":"0";
     const g=galSize(p),gi=pages[i].img;gi.style.width=g.w+"px";gi.style.height=g.h+"px";
     if(MOB()){gi.style.left=(vw-g.w)/2+"px";gi.style.top=((.1+.18)*vh-g.h/2)+"px"}else{gi.style.left=gi.style.top=""}
   });
@@ -248,16 +250,19 @@ function updateYear(){
 tl.addEventListener("scroll",updateYear,{passive:true});setYear(nowY);
 
 const rect=el=>{const r=el.getBoundingClientRect();return{x:r.left,y:r.top,w:r.width,h:r.height}};
-const itemRect=i=>{const im=items[i].firstChild;return{x:im.offsetLeft-tl.scrollLeft,y:im.offsetTop,w:im.offsetWidth,h:im.offsetHeight}};
+const itemRect=i=>{const b=items[i],im=b.firstChild;return{x:b.offsetLeft-tl.scrollLeft,y:b.offsetTop,w:im.offsetWidth,h:im.offsetHeight}};
 function backShow(v){backBtn.style.setProperty("--q",v);backBtn.style.pointerEvents=v>.5?"auto":"none"}
 
+const warmed=new Set();
+function warm(i){if(warmed.has(i))return;warmed.add(i);PROJECTS[i].media.forEach(m=>{const im=new Image();im.decoding="async";im.src=src(m)})}
 function begin(i){
+  warm(i);
   if(gest&&gest.i===i)return;
   if(gest)gest.fly.remove();
   const closing=state==="gal";
   curIdx=i;gp.go(i,true);
   let A=itemRect(i);
-  if(closing&&(A.x+A.w<0||A.x>innerWidth)){tl.scrollLeft+=A.x+A.w/2-innerWidth/2;A=itemRect(i)}
+  if(closing&&(A.x<0||A.x+A.w>innerWidth)){tl.scrollLeft+=A.x+A.w/2-innerWidth/2;A=itemRect(i)}
   const B=rect(pages[i].img);
   const fly=new Image();fly.src=src(PROJECTS[i].media[0]);fly.className="fly";fly.decoding="sync";fly.alt="";
   Object.assign(fly.style,{left:A.x+"px",top:A.y+"px",width:A.w+"px",height:A.h+"px"});
@@ -306,7 +311,7 @@ function layersOn(a){["viewer","about"].forEach(l=>$(l).classList.toggle("on",a.
 function openViewer(){
   state="viewer";const p=PROJECTS[curIdx],v=$("vt");
   $("vcap").innerHTML="<b>"+p.title+"</b>"+p.ctx+" "+p.year;
-  v.innerHTML=p.media.map((m,i)=>'<div class="card"><img draggable="false" src="'+src(m)+'" alt="'+p.title+' '+(i+1)+'"></div>').join("");
+  v.innerHTML=p.media.map((m,i)=>'<div class="card"><img class="ld" draggable="false" decoding="async" onload="this.classList.remove(\'ld\')" src="'+src(m)+'" alt="'+p.title+' '+(i+1)+'"></div>').join("");
   $("dots").innerHTML=p.media.map((_,i)=>'<i class="'+(i?"":"on")+'"></i>').join("");
   vp.go(0,true);gal.classList.add("playing");layersOn(["viewer"]);
 }
