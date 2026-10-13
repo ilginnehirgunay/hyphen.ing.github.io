@@ -36,7 +36,7 @@ img{display:block;-webkit-user-drag:none;user-select:none}
 #tl::-webkit-scrollbar{display:none}
 .item{flex:none;display:block}
 #home.abt #hdr{opacity:0;pointer-events:none}
-#home.abt #tl{filter:blur(18px);opacity:.45;transform:scale(.98);pointer-events:none}
+#home.abt #tl{opacity:0;pointer-events:none}
 
 #back{position:fixed;left:2.6vw;top:calc(6.6vh - .65em);font-size:20px;width:1.6em;height:1.6em;display:grid;place-items:center;z-index:6;opacity:calc(var(--q,0)*.3);pointer-events:none;transition:opacity .25s}
 #back svg{height:1.3em;width:1.3em;fill:none;stroke:#000;stroke-width:4.4;stroke-miterlimit:10}
@@ -50,7 +50,8 @@ img{display:block;-webkit-user-drag:none;user-select:none}
 .info{width:14em;flex:none;font-size:calc(1em - 1pt);opacity:var(--io,0)}
 .info h2{font:inherit;font-weight:700;margin:0}
 .sub span{display:block}.sub .dt{margin-top:.6em}
-.play{display:block;position:relative;width:2.1em;height:2.1em;margin-top:1.8em}
+.play{touch-action:manipulation;z-index:2;display:block;position:relative;width:2.1em;height:2.1em;margin-top:1.8em}
+.play::after{content:"";position:absolute;inset:-.8em}
 .play img{position:absolute;inset:0;width:100%;height:100%;transition:opacity .2s}
 .play .h{opacity:0}
 .play:active .h,.play:focus-visible .h{opacity:1}
@@ -71,14 +72,14 @@ img{display:block;-webkit-user-drag:none;user-select:none}
 #dots{position:absolute;left:50%;bottom:5vh;display:flex;gap:.55em;transform:translateX(-50%)}
 #dots i{width:.4em;height:.4em;border-radius:50%;background:#d6d6d6;transition:background .3s}#dots i.on{background:#555}
 
-#abg{background:rgba(255,255,255,.55)}
 .abt{position:absolute;left:22.1vw;top:50%;width:56vw;display:flex;gap:3vw;align-items:flex-start;transform:translateY(-50%)}
-.abt .tx,.abt .ph{opacity:0;filter:blur(3px);transform:scale(1.07);transform-origin:0 50%;transition:opacity .6s var(--ease),filter .7s var(--ease),transform .9s var(--ease)}
-#about.on .tx{opacity:1;filter:none;transform:none;transition-delay:.15s}
-#about.on .ph{opacity:1;filter:none;transform:none;transition-delay:.3s}
+#about{background:#fff}
+.abt .tx,.abt .ph{opacity:0;transition:opacity .5s ease}
+#about.on .tx{opacity:1;transition-delay:.1s}
+#about.on .ph.ok{opacity:1;transition-delay:.2s}
 .abt .tx{width:25vw}.abt .tx p{margin:0;font-size:calc(1em - 1pt)}
 .abt .lk{margin-top:2.4em}
-.abt .ph{display:block;width:28vw;height:auto;background:#f1f1f1}
+.abt .ph{display:block;width:28vw;aspect-ratio:1399/1080;height:auto;background:#f1f1f1}
 @media (max-width:800px){
  body{font-size:clamp(15px,4.4vw,26px)}
  #hdr{top:12dvh}
@@ -120,7 +121,6 @@ img{display:block;-webkit-user-drag:none;user-select:none}
 <section id="viewer" class="layer" aria-label="Gallery"><div id="vcap"></div><div id="vs"><div id="vt"></div></div><div id="dots"></div></section>
 
 <section id="about" class="layer" aria-label="About">
-  <div id="abg" class="layer on" style="pointer-events:none"></div>
   <div class="abt">
     <div class="tx">
       <p>Ilgın Nehir Günay is an architect and multidisciplinary designer whose work spans large-scale industrial construction, historic restoration, and independent practice. As lead designer across architecture and industrial design, his work is grounded in structural honesty, utilitarian logic, and clear functional purpose.</p>
@@ -130,7 +130,7 @@ img{display:block;-webkit-user-drag:none;user-select:none}
         <a class="lnk" href="https://www.linkedin.com/in/ilginnehirgunay/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
-    <img class="ph" id="aboutImg" alt="Ilgın Nehir Günay" draggable="false">
+    <img class="ph" id="aboutImg" decoding="async" alt="Ilgın Nehir Günay" draggable="false">
   </div>
 </section>
 
@@ -176,7 +176,8 @@ function galSize(p){
 function Pager(track,snaps,onIdx){
   return{off:0,idx:0,raf:0,
     set(o){this.off=o;track.style.transform="translate3d("+(-o)+"px,0,0)"},
-    drag(o){const s=snaps(),lo=s[0],hi=s[s.length-1];let v=o;if(v<lo)v=lo+(v-lo)*.35;if(v>hi)v=hi+(v-hi)*.35;this.set(v)},
+    snaps,
+    drag(o){cancelAnimationFrame(this.raf);const s=snaps(),lo=s[0],hi=s[s.length-1];let v=o;if(v<lo)v=lo+(v-lo)*.35;if(v>hi)v=hi+(v-hi)*.35;this.set(v)},
     near(o){const s=snaps();let b=0;s.forEach((v,i)=>{if(Math.abs(v-o)<Math.abs(s[b]-o))b=i});return b},
     go(i,instant){
       const s=snaps();i=clamp(i,0,s.length-1);this.idx=i;if(onIdx)onIdx(i);cancelAnimationFrame(this.raf);
@@ -185,7 +186,7 @@ function Pager(track,snaps,onIdx){
         if(Math.abs(tgt-this.off)>.4)this.raf=requestAnimationFrame(step);else this.set(tgt)};
       this.raf=requestAnimationFrame(step);
     },
-    release(vx){this.go(this.near(this.off-vx*220))}
+    release(vx){const s=snaps();let i=this.near(this.off);if(Math.abs(vx)>.35)i=clamp(this.idx+(vx<0?1:-1),0,s.length-1);this.go(i)}
   };
 }
 const gp=Pager($("gt"),()=>pages.map((_,i)=>i*innerWidth),i=>{curIdx=i});
@@ -225,7 +226,7 @@ function layout(){
   });
   gp.set(curIdx*vw);
 }
-$("aboutImg").src=src("images/ing-about.webp");
+const ai=$("aboutImg");ai.onload=()=>ai.classList.add("ok");ai.src=src("images/ing-about.webp");if(ai.complete&&ai.naturalWidth)ai.classList.add("ok");
 layout();addEventListener("resize",layout);
 
 const yr=$("year");let shown="";const nowY=String(new Date().getFullYear());
@@ -337,7 +338,7 @@ addEventListener("pointerdown",e=>{
 addEventListener("pointermove",e=>{
   if(!g)return;const dx=e.clientX-g.x0,dy=e.clientY-g.y0,now=performance.now(),dt=Math.max(1,now-g.t);
   g.vx=.7*g.vx+.3*(e.clientX-g.lx)/dt;g.vy=.7*g.vy+.3*(e.clientY-g.ly)/dt;g.lx=e.clientX;g.ly=e.clientY;g.t=now;
-  if(!g.axis){if(Math.hypot(dx,dy)<6)return;g.axis=Math.abs(dx)>Math.abs(dy)?"x":"y";suppress=true;cancelAnimationFrame(raf)}
+  if(!g.axis){if(Math.hypot(dx,dy)<(e.pointerType==="touch"?10:6))return;g.axis=Math.abs(dx)>Math.abs(dy)?"x":"y";suppress=true;cancelAnimationFrame(raf)}
   if(g.axis==="x"){
     if(gest)return;
     if(state==="home")tl.scrollLeft=g.sl0-dx;
@@ -365,16 +366,35 @@ function endDrag(){
   }
 }
 addEventListener("pointerup",endDrag);addEventListener("pointercancel",endDrag);
+let pd=null;
+addEventListener("pointerdown",e=>{const b=e.target.closest(".play");pd=b?{x:e.clientX,y:e.clientY}:null},true);
+addEventListener("pointerup",e=>{
+  const hit=pd&&e.target.closest(".play")&&Math.hypot(e.clientX-pd.x,e.clientY-pd.y)<14;pd=null;
+  if(hit&&state==="gal"&&!gest){suppress=true;setTimeout(()=>{suppress=false},450);openViewer()}
+},true);
 addEventListener("click",e=>{if(suppress){e.stopPropagation();e.preventDefault()}},true);
 
 document.addEventListener("click",e=>{if((state==="gal"||state==="viewer"||state==="about")&&!gest&&!e.target.closest("button,a"))backBtn.onclick(e)});
 
-let wt=0,wdir=0;
+let wt=0,wdir=0,ht=0,hv=0,hl=0,hA=false,hi=0;
+function sideways(dx){
+  if(gest)return;
+  const now=performance.now();hv=.6*hv+.4*dx/Math.max(1,now-hl);hl=now;
+  if(state==="home")tl.scrollLeft+=dx;
+  else if(state==="gal"||state==="viewer"){
+    const P=state==="gal"?gp:vp,s=P.snaps();
+    if(!hA){hA=true;hi=P.near(P.off)}
+    P.drag(clamp(P.off+dx,s[Math.max(0,hi-1)],s[Math.min(s.length-1,hi+1)]));
+  }
+  clearTimeout(ht);
+  ht=setTimeout(()=>{if(hA){const P=state==="gal"?gp:vp;P.release(-hv)}hA=false;hv=0},90);
+}
 addEventListener("wheel",e=>{
   e.preventDefault();
-  if(state==="about"||state==="viewer")return;
-  const dy=e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?innerHeight:1);
-  if(!dy||Math.abs(e.deltaX)>Math.abs(dy))return;
+  if(state==="about")return;
+  const m=e.deltaMode===1?16:e.deltaMode===2?innerHeight:1,dy=e.deltaY*m,dx=e.deltaX*m;
+  if(Math.abs(dx)>Math.abs(dy)){sideways(dx);return}
+  if(!dy||state==="viewer")return;
   if(!gest){
     if(state==="home"){if(dy<=0)return;const it=document.elementFromPoint(e.clientX,e.clientY);const k=it?items.indexOf(it.closest(".item")):-1;if(k<0)return;begin(k)}
     else if(state==="gal"){if(dy>=0)return;begin(curIdx)}
