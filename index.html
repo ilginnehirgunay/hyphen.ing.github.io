@@ -35,6 +35,7 @@ img{display:block;-webkit-user-drag:none;user-select:none}
 #tl{position:absolute;inset:0;display:flex;align-items:center;padding:22vh 22vw 0 22.1vw;overflow:hidden;transition:filter .7s var(--ease),opacity .7s var(--ease),transform .7s var(--ease);transform-origin:0 50%}
 #tl::-webkit-scrollbar{display:none}
 .item{flex:none;display:block}
+.item img{border-radius:.9em}
 #home.abt #hdr{opacity:0;pointer-events:none}
 #home.abt #tl{opacity:0;pointer-events:none}
 
@@ -64,7 +65,7 @@ img{display:block;-webkit-user-drag:none;user-select:none}
 .fly.blur{filter:blur(20px);opacity:0}
 
 #vs{position:absolute;inset:0;overflow:hidden}
-#vt{display:flex;align-items:center;gap:3vw;height:100%;width:max-content;padding:0 8vw 0 17.5vw;will-change:transform}
+#vt{display:flex;align-items:center;gap:3em;height:100%;width:max-content;padding:0 8vw 0 17.5vw;will-change:transform}
 .card{flex:none}
 #vcap{position:absolute;left:17.5vw;top:11vh;font-size:calc(1em - 1pt);line-height:1.25;pointer-events:none}#vcap b{display:block;font-weight:700}
 .card img{height:56vh;width:auto;background:#f4f4f4}
@@ -93,7 +94,7 @@ img{display:block;-webkit-user-drag:none;user-select:none}
  .info{position:absolute;left:14vw;right:8vw;top:55dvh;width:auto;display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:start}
  .team{margin-top:0}
  .gimg{position:absolute}
- #vt{padding:0 5vw;gap:4vw}
+ #vt{padding:0 5vw}
  #vcap{left:5vw;top:15dvh}
  .card img{height:45dvh}
  .abt{left:14vw;top:11dvh;transform:none;width:72vw;flex-direction:column-reverse;gap:1.6em}
@@ -148,10 +149,10 @@ const PROJECTS=[
   media:d("later-hotpot-restaurant","later-entrance")},
  {title:"Rocking Chair and Coffee Table",role:"Project Director and Lead Designer",ctx:LB,year:"2024",cover:[1920,1080],k:1,credits:LBC,
   media:d("lb-research","lb-research-wooden-prototypes lb-research-bench-inner-parts lb-research-wooden-rocking-chair lb-research-wooden-rocking-chair-close-up")},
- {title:"Brand Identity",role:"Project Director and Lead Designer",ctx:LB,year:"2023",cover:[1080,1080],k:.75,credits:LBC,
-  media:d("lb-research","lb-research-long-sleeve-tee-back-close-up lb-research-long-sleeve-tee-front lb-research-long-sleeve-tee-back lb-research-long-sleeve-tee-logo-set")},
  {title:"Mechanical Bench",role:"Project Director and Lead Designer",ctx:LB,year:"2022 — 2024",cover:[3840,1080],k:1,credits:LBC,
   media:d("lb-research","lb-research-bench lb-research-bench-inside-close-up lb-research-bench-installation-demo lb-research-bench-motion-demo lb-research-bench-sketches lb-research-bench-render lb-research-wooden-bench-prototype lb-research-bench-installation lb-research-bench-side lb-research-bench-slices-installation lb-research-bench-padlock-installation")},
+ {title:"Brand Identity",role:"Project Director and Lead Designer",ctx:LB,year:"2022",cover:[1080,1080],k:.75,credits:LBC,
+  media:d("lb-research","lb-research-long-sleeve-tee-back-close-up lb-research-long-sleeve-tee-front lb-research-long-sleeve-tee-back lb-research-long-sleeve-tee-logo-set")},
  {title:"Xiaomi Mi Stores",role:"Project Architect and Site Manager",ctx:"Baran Construction",loc:"Antalya, Ankara and Istanbul, Türkiye",year:"2022 — 2023",cover:[1920,1080],k:1,credits:[],
   media:d("xiaomi-mi-stores","mi-stores-hero mi-stores-details01 mi-stores-details02 mi-stores-details03 mi-stores-demolition mi-stores-steel-box-sections mi-stores-gypsum-boarding mi-stores-plaster-job mi-stores-fixture-installation01 mi-stores-plaster-job02 mi-stores-fixture-installation02 mi-stores-fixture-installation03")}
 ];
@@ -220,7 +221,7 @@ function layout(){
   const vh=innerHeight,vw=innerWidth;
   PROJECTS.forEach((p,i)=>{
     const s=tlSize(p),im=items[i].firstChild;im.style.width=s.w+"px";im.style.height=s.h+"px";
-    items[i].style.marginLeft=i?"4.5em":"0";
+    items[i].style.marginLeft=i?"3em":"0";
     const g=galSize(p),gi=pages[i].img;gi.style.width=g.w+"px";gi.style.height=g.h+"px";
     if(MOB()){gi.style.left=(vw-g.w)/2+"px";gi.style.top=((.1+.18)*vh-g.h/2)+"px"}else{gi.style.left=gi.style.top=""}
   });
@@ -269,12 +270,14 @@ function begin(i){
   Object.assign(fly.style,{left:A.x+"px",top:A.y+"px",width:A.w+"px",height:A.h+"px"});
   document.body.appendChild(fly);
   pages[i].img.style.visibility="hidden";
-  gest={i,A,B,fly};q=closing?1:0;render(q);
+  const r0=parseFloat(getComputedStyle(items[i].firstChild).borderTopLeftRadius)||0;
+  gest={i,A,B,fly,r0};q=closing?1:0;render(q);
 }
 function render(v){
   q=v;const g=gest;if(!g)return;const{A,B,fly,i}=g;
   const x=A.x+(B.x-A.x)*v,y=A.y+(B.y-A.y)*v,w=A.w+(B.w-A.w)*v,h=A.h+(B.h-A.h)*v;
   fly.style.transform="translate("+(x-A.x)+"px,"+(y-A.y)+"px) scale("+w/A.w+","+h/A.h+")";
+  fly.style.borderRadius=(g.r0*(1-v)/(w/A.w))+"px";
   hdr.style.opacity=clamp(1-v*3);hdr.style.pointerEvents=v>.05?"none":"";
   const ex=innerWidth*.12;
   items.forEach((el,k)=>{
